@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tiles xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tile id="1">
+		<TypeCoordinates>mlllm,-mmm-,--t--,ttt--,-----</TypeCoordinates>
+		<WorkerPosition>..l..,.....,-....,..t..,...-.</WorkerPosition>
+	</Tile>
+</Tiles>
