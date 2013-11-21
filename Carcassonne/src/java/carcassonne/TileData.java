@@ -13,25 +13,25 @@ import java.util.ArrayList;
 public class TileData
 {
 
-    private ArrayList<int[]> crass, city, road, church, wall;
+    private ArrayList<int[]> grass, city, road, church, wall;
 
     public TileData()
     {
-        crass=new ArrayList();
+        grass=new ArrayList();
         city=new ArrayList();
         road=new ArrayList();
         church=new ArrayList();
         wall=new ArrayList();
     }
 
-    public ArrayList<int[]> getCrass()
+    public ArrayList<int[]> getGrass()
     {
-        return crass;
+        return grass;
     }
 
-    public void setCrass(ArrayList<int[]> crass)
+    public void setGrass(ArrayList<int[]> crass)
     {
-        this.crass = crass;
+        this.grass = grass;
     }
 
     public ArrayList<int[]> getCity()
@@ -79,9 +79,9 @@ public class TileData
         this.wall.add(wall);
     }
 
-    public void addCrassCoordinates(int[] crass)
+    public void addGrassCoordinates(int[] grass)
     {
-        this.crass.add(crass);
+        this.grass.add(grass);
     }
 
     public void addCityCoordinates(int[] city)

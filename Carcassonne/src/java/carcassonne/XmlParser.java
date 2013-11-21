@@ -86,7 +86,7 @@ public class XmlParser
                 switch (line.charAt(k))
                 {
                     case '-':
-                        tiledata.addCrassCoordinates(coords);
+                        tiledata.addGrassCoordinates(coords);
                         break;
                     case 'm':
                         tiledata.addWallCoordinates(coords);
