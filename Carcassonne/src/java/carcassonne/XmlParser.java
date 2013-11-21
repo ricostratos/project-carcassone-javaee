@@ -81,6 +81,7 @@ public class XmlParser
                  * m muuri
                  * l linna
                  * t tie
+                 * e este(tiellä)
                  * k kirkko
                  */
                 switch (line.charAt(k))
@@ -96,6 +97,9 @@ public class XmlParser
                         break;
                     case 't':
                         tiledata.addRoadCoordinates(coords);
+                        break;
+                    case 'e':
+                        tiledata.addBlockCoordinates(coords);
                         break;
                     case 'k':
                         tiledata.addChurchCoordinates(coords);

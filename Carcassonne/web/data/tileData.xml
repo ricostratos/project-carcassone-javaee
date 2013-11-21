@@ -1,7 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Merkit:
+     - Pelto
+     m Muuri
+     l Linna
+     t Tie
+     e Este(tiellä)
+     k Kirkko
+     , Rivinvaihto
+     . Tyhjä (vain WorkerPositionissa)
+-->
 <Tiles xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Tile id="1">
-		<TypeCoordinates>mlllm,-mmm-,--t--,ttt--,-----</TypeCoordinates>
-		<WorkerPosition>..l..,.....,-....,..t..,...-.</WorkerPosition>
+		<TypeCoordinates>mlllm,-mmm-,ttt--,-----,-----</TypeCoordinates>
+		<WorkerPosition>..l..,-....,.t...,.....,...-.</WorkerPosition>
+	</Tile>
+        <Tile id="2">
+		<TypeCoordinates>--t--,--t--,tte--,--t--,--t--</TypeCoordinates>
+		<WorkerPosition>.....,..t..,.t...,..t..,.....</WorkerPosition>
+	</Tile>
+        <Tile id="3">
+		<TypeCoordinates>-----,-----,--k--,-----,-----</TypeCoordinates>
+		<WorkerPosition>.....,.....,..k..,.-...,.....</WorkerPosition>
+	</Tile>
+        <Tile id="4">
+		<TypeCoordinates>--t--,--t--,ttett,--t--,--t--</TypeCoordinates>
+		<WorkerPosition>-...-,..t..,.t.t.,..t..,-...-</WorkerPosition>
+	</Tile>
+        <Tile id="5">
+		<TypeCoordinates>----m,---ml,-k-ml,---ml,----m</TypeCoordinates>
+		<WorkerPosition>..-..,.....,.k..l,.....,.....</WorkerPosition>
+	</Tile>
+        <Tile id="6">
+		<TypeCoordinates>--t--,--ttt,----t,--m--,mmlmm</TypeCoordinates>
+		<WorkerPosition>.....,..t..,.-...,.....,..l..</WorkerPosition>
+	</Tile>
+	<Tile id="7">
+		<TypeCoordinates>-----,-----,-----,-mmm-,mlllm</TypeCoordinates>
+		<WorkerPosition>.....,..-..,.....,.....,..l..</WorkerPosition>
+	</Tile>
+        <Tile id="8">
+		<TypeCoordinates>-----,-----,ttk--,-----,-----</TypeCoordinates>
+		<WorkerPosition>.....,.....,t.k..,.....,.....</WorkerPosition>
+	</Tile>
+        
+        <!-- 9
+            mmlmm
+            mmlmm
+            lllll
+            mmlmm
+            mmlmm
+        -->
+        <Tile id="9">
+		<TypeCoordinates>mmlmm,mmlmm,lllll,mmlmm,mmlmm</TypeCoordinates>
+		<WorkerPosition>.....,..l..,.l...,.....,.....</WorkerPosition>
+	</Tile>
+        <Tile id="10">
+		<TypeCoordinates>--t--,--t--,ttett,-----,mlllm</TypeCoordinates>
+		<WorkerPosition>-.t.-,.....,t...t,..-..,..l..</WorkerPosition>
+	</Tile>
+        <Tile id="11">
+		<TypeCoordinates>-----,-----,ttttt,-----,mlllm</TypeCoordinates>
+		<WorkerPosition>..-..,.....,..t..,..-..,..l..</WorkerPosition>
+	</Tile>
+        <Tile id="12">
+		<TypeCoordinates>mllll,-mlll,ttmll,-mlll,mllll</TypeCoordinates>
+		<WorkerPosition>.....,-.l..,t....,-....,.....</WorkerPosition>
+	</Tile>
+	<Tile id="13">
+		<TypeCoordinates>----m,---ml,tt-ml,-t--l,-tt-m</TypeCoordinates>
+		<WorkerPosition>.-...,.....,t...l,.....,-....</WorkerPosition>
+	</Tile>
+        <Tile id="14">
+		<TypeCoordinates>--t--,--t--,ttt--,-----,-----</TypeCoordinates>
+		<WorkerPosition>.....,.-...,.t...,...-.,.....</WorkerPosition>
+	</Tile>
+        <Tile id="15">
+		<TypeCoordinates>m----,lm---,lm---,lmmm-,mlllm</TypeCoordinates>
+		<WorkerPosition>.....,...-.,l....,.....,..l..</WorkerPosition>
+	</Tile>
+        <Tile id="16">
+		<TypeCoordinates>mllll,-mlll,--mll,---ml,----m</TypeCoordinates>
+		<WorkerPosition>.....,...l.,.....,.-...,.....</WorkerPosition>
+	</Tile>
+        <Tile id="17">
+		<TypeCoordinates>mllll,-mlll,tmlll,-mlll,m-t-m</TypeCoordinates>
+		<WorkerPosition>.....,-..l.,t....,-....,.-t-.</WorkerPosition>
+	</Tile>
+        <Tile id="18">
+		<TypeCoordinates>m---m,lmmml,lllll,lmmml,m---m</TypeCoordinates>
+		<WorkerPosition>..-..,.....,..l..,.....,..-..</WorkerPosition>
+	</Tile>
+	<Tile id="19">
+		<TypeCoordinates>mllll,--lll,t-mll,t---l,ttt-m</TypeCoordinates>
+		<WorkerPosition>.....,...l.,t....,.....,...-.</WorkerPosition>
+	</Tile>
+        <Tile id="20">
+		<TypeCoordinates>mllll,-mlll,-mlll,-mlll,mllll</TypeCoordinates>
+		<WorkerPosition>.....,.....,-..l.,.....,.....</WorkerPosition>
+	</Tile>
+        <Tile id="21">
+		<TypeCoordinates>-----,-----,ttttt,-----,mlllm</TypeCoordinates>
+		<WorkerPosition>..-..,.....,..t..,..-..,..l..</WorkerPosition>
+	</Tile>
+        <Tile id="22">
+		<TypeCoordinates>ttt--,t----,t-ttt,--mm-,mlllm</TypeCoordinates>
+		<WorkerPosition>..t.-,.....,....t,.....,..l..</WorkerPosition>
+	</Tile>
+        <Tile id="23">
+		<TypeCoordinates>mlllm,-mmm-,-----,-mmm-,mlllm</TypeCoordinates>
+		<WorkerPosition>..l..,.....,..-..,.....,..l..</WorkerPosition>
+	</Tile>
+        <Tile id="24">
+		<TypeCoordinates>-----,-----,ttttt,-----,-----</TypeCoordinates>
+		<WorkerPosition>..-..,.....,..t..,.....,..-..</WorkerPosition>
 	</Tile>
 </Tiles>

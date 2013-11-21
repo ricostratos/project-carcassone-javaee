@@ -13,13 +13,14 @@ import java.util.ArrayList;
 public class TileData
 {
 
-    private ArrayList<int[]> grass, city, road, church, wall;
+    private ArrayList<int[]> grass, city, road, block, church, wall;
 
     public TileData()
     {
         grass=new ArrayList();
         city=new ArrayList();
         road=new ArrayList();
+        block=new ArrayList();
         church=new ArrayList();
         wall=new ArrayList();
     }
@@ -52,6 +53,16 @@ public class TileData
     public void setRoad(ArrayList<int[]> road)
     {
         this.road = road;
+    }
+
+    public ArrayList<int[]> getBlock()
+    {
+        return block;
+    }
+
+    public void setBlock(ArrayList<int[]> block)
+    {
+        this.block = block;
     }
 
     public ArrayList<int[]> getChurch()
@@ -92,6 +103,10 @@ public class TileData
     public void addRoadCoordinates(int[] road)
     {
         this.road.add(road);
+    }
+    
+    public void addBlockCoordinates(int[] block) {
+        this.block.add(block);
     }
 
     public void addChurchCoordinates(int[] church)
