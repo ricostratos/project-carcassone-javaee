@@ -31,6 +31,7 @@ body {
 }
 #banner img {
     margin-left: 10px;
+    margin-top: 5px;
 }
 #navigation {
     width: auto;
@@ -42,7 +43,7 @@ body {
     
     //text-align: center;
 }
-#navigation a {
+#navigation .link {
     background: #dfd1ab;
     padding: 3px;
     padding-left: 9px;
@@ -59,7 +60,8 @@ body {
     
     transition: 0.1s;
 }
-#navigation a:hover {
+#navigation .selected, #navigation a:hover {
+    
     padding-bottom: 8px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -87,6 +89,37 @@ body {
 }
 #setter .gameInfo {
     width: 20%;
+    background: url('images/corner.png') no-repeat;
+}
+#newTile {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    cursor: move;
+}
+#newTileImage {
+    transition: 0.4s;
+    border: 1px solid #000;
+    display: block;
+}
+#rotator {
+    visibility: hidden;
+    position: absolute;
+    width: 150px;
+    text-align: center;
+}
+#rotator .pusher {
+    width: 50px;
+}
+#rotator img {
+    width: 40px;
+    cursor: pointer;
+}
+#newTilePlaceHolder {
+    width: 100px;
+    height: 100px;
+    background: #444;
+    border: 1px solid #000;
 }
 
 #footer {

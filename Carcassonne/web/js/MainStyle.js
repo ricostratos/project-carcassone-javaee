@@ -1,4 +1,11 @@
-$.noConflict();
-$(document).ready(function(){
-   alert("Ei toimi");
+$(function(){
+    
 });
+
+function linkHover() {
+    
+}
+
+function linkLeave() {
+    
+}
