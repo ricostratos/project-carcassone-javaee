@@ -6,6 +6,7 @@ var newTileRotation = 0;
 var trueTileRotation;
 
 function checkNewTileLocation() {
+    var match = false;
     for(var i=0; i<$("#gameBoardTable").find("tr").length; i++) {
         for(var j=0; j<$("#gameBoardRow"+i).find("td").length; j++) {
             if($("#"+i+"-"+j).attr("class").split(" ")[0] === "newTilePlaceHolder") {
@@ -16,9 +17,15 @@ function checkNewTileLocation() {
                 $("#newTile").css("left",$("#"+i+"-"+j).position().left);
                 $("#newTile").css("top",$("#"+i+"-"+j).position().top);
                 rotatorVisible();
+                match = true;
             }
             }
         }
+    }
+    if(!match) {
+        $("#newTile").css("opacity","1");
+        $("#newTile").css("left",$("#gameInfo").position().left+1);
+        $("#newTile").css("top",$("#gameInfo").position().top+179);
     }
 }
 
