@@ -4,10 +4,13 @@
  */
 package carcassonne;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 
 /**
@@ -25,7 +28,7 @@ public class MapController
     {
         allTiles =new ArrayList();
     }
-
+    
     public ArrayList<Tile> getAllTiles()
     {
 

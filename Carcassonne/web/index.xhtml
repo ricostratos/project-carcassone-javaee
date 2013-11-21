@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Carcassonne</title>
         <link href="css/Default.css" rel="stylesheet" type="text/css" />
@@ -17,20 +18,38 @@
             <div id="banner"><img src="css/images/Banner.png" alt="Carcassonne" onclick="test()" /></div>
             <div id="navigation"><ui:include src="navigation.xhtml"></ui:include></div>
             <div id="content">
+                
                 <table id="setter">
                     <tr>
                         <td id="gameInfo" class="gameInfo">Pelin tiedot
                             <div id="newTile" onmouseup="checkNewTileLocation()" onmousedown="rotatorHidden()"><img src="css/images/mapTilePlaceholder.png" alt="loading.." id="newTileImage" /></div>
                             <div id="rotator">
-                                <img src="css/images/CW.png" alt="-" onclick="rotateCW()" /><h:button id="newTileReady" value="Valmis" onclick="newTileReady()" /><img src="css/images/CCW.png" alt="-" onclick="rotateCCW()" />
+                                <img src="css/images/CW.png" alt="-" onclick="rotateCW()" /><h:button id="newTileReady" value="Valmis" onclick="newTileReady()"></h:button><img src="css/images/CCW.png" alt="-" onclick="rotateCCW()" />
                             </div>
                             <!-- Tänne pelin tiedot -->
                         </td>
-                        <td id="gameBoard" class="gameBoard"><br /><br /><br /><br /><br />Pelilauta<br /><div id="newTilePlaceHolder">a</div><br /><br /><br /><br />
-                            <!-- Tähän generoidaan pelilauta -->
+                        <td id="gameBoard" class="gameBoard">
+                            <table id="gameBoardTable">
+                                <tr id="gameBoardRow0">
+                                    <td id="0-0" class="tileHolderTD"></td>
+                                    <td id="0-1" class="newTilePlaceHolder tileHolderTD"></td>
+                                    <td id="0-2" class="tileHolderTD"></td>
+                                </tr>
+                                <tr id="gameBoardRow1">
+                                    <td id="1-0" class="newTilePlaceHolder tileHolderTD"></td>
+                                    <td id="1-1" class="tileHolderTD"><img src="css/images/mapTilePlaceholder.png" alt="loading.." /></td>
+                                    <td id="1-2" class="newTilePlaceHolder tileHolderTD"></td>
+                                </tr>
+                                <tr id="gameBoardRow2">
+                                    <td id="2-0" class="tileHolderTD"></td>
+                                    <td id="2-1" class="newTilePlaceHolder tileHolderTD"></td>
+                                    <td id="2-2" class="tileHolderTD"></td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>
+                
             </div>
             <div id="footer">&copy; Resist Posse</div>
         </div>

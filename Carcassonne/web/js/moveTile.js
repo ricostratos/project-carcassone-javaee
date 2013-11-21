@@ -3,15 +3,22 @@ $(function() {
 });
 
 var newTileRotation = 0;
+var trueTileRotation;
 
 function checkNewTileLocation() {
-    if(Math.abs($("#newTile").position().left - $("#newTilePlaceHolder").position().left) >= 50 || Math.abs($("#newTile").position().top - $("#newTilePlaceHolder").position().top) >= 50) {
-        
-    } else {
-        $("#newTile").css("opacity","1");
-        $("#newTile").css("left",$("#newTilePlaceHolder").position().left);
-        $("#newTile").css("top",$("#newTilePlaceHolder").position().top);
-        rotatorVisible();
+    for(var i=0; i<$("#gameBoardTable").find("tr").length; i++) {
+        for(var j=0; j<$("#gameBoardRow"+i).find("td").length; j++) {
+            if($("#"+i+"-"+j).attr("class").split(" ")[0] === "newTilePlaceHolder") {
+            if(Math.abs($("#newTile").position().left - $("#"+i+"-"+j).position().left) >= 50 || Math.abs($("#newTile").position().top - $("#"+i+"-"+j).position().top) >= 50) {
+                
+            } else {
+                $("#newTile").css("opacity","1");
+                $("#newTile").css("left",$("#"+i+"-"+j).position().left);
+                $("#newTile").css("top",$("#"+i+"-"+j).position().top);
+                rotatorVisible();
+            }
+            }
+        }
     }
 }
 
@@ -28,7 +35,9 @@ function rotatorHidden() {
 
 function newTileReady() {
     rotatorHidden();
-    alert("Palikka asetettu. Rotation: "+newTileRotation+"\nTahan sitten sovellamme modulolaskentaa. :)");
+    trueTileRotation = newTileRotation % 360;
+    if(trueTileRotation < 0) trueTileRotation += 360;
+    alert("Palikka asetettu.\nRotation: "+newTileRotation+"\nmod(360): "+trueTileRotation);
 }
 
 function rotateCW() {
