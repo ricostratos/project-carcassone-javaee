@@ -1,15 +1,31 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Carcassonne</title>
+        <link href="css/Default.css" rel="stylesheet" type="text/css" />
+        <script src="js/MainStyle.js"></script>
     </h:head>
     <h:body>
-       <h:form>
-               <h:outputText value="moi" />
-               <h:commandButton action="${MapController.readXml}" value="tarkasta" />
-               </h:form> 
+        <div id="outerBody">
+            <div id="banner"><img src="css/images/Banner.png" alt="Carcassonne" onclick="test()" /></div>
+            <div id="navigation"><ui:include src="navigation.xhtml"></ui:include></div>
+            <div id="content">
+                <table id="setter">
+                    <tr>
+                        <td id="gameInfo" class="gameInfo">Pelin tiedot
+                            <!-- Tänne pelin tiedot -->
+                        </td>
+                        <td id="gameBoard" class="gameBoard"><br /><br /><br /><br /><br />Pelilauta<br /><br /><br /><br /><br />
+                            <!-- Tähän generoidaan pelilauta -->
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="footer">&copy; Resist Posse</div>
+        </div>
     </h:body>
 </html>
 
