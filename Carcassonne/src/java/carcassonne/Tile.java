@@ -4,14 +4,11 @@
  */
 package carcassonne;
 
-import java.util.TreeMap;
-
-
 /**
  *
  * @author Tupi
  */
-public class Tile
+public class Tile implements Comparable<Tile>
 {
     private int id,posX,posY,rotation;
     private TileData workerPositions, typeCoordinates;
@@ -85,6 +82,13 @@ public class Tile
     public void setTypeCoordinates(TileData typeCoordinates)
     {
         this.typeCoordinates = typeCoordinates;
+    }
+
+    @Override
+    public int compareTo(Tile o)
+    {
+        int lastCmp =Integer.compare(posX, o.posX);
+        return (lastCmp != 0 ? lastCmp : Integer.compare(posY, o.posY));
     }
             
 }

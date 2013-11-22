@@ -8,6 +8,7 @@ import com.google.common.collect.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -44,6 +45,7 @@ public class MapController
         createNewTile(1,-2,1);
         createNewTile(7,-1,1);
         createNewTile(5,-1,-3);
+        Collections.sort(tilesInGame);
     }
     
     public ArrayList<Tile> getAllTiles()
