@@ -23,10 +23,15 @@ public class MapController
 {
 
     private ArrayList<Tile> allTiles;
-
+    private ArrayList<Tile> tilesOnGame;
     public MapController()
     {
         allTiles =new ArrayList();
+        tilesOnGame =new ArrayList();
+        ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance()
+                .getExternalContext().getContext();
+        String realPath = ctx.getRealPath("/data/tileData.xml");
+        allTiles = XmlParser.parseXml(realPath);
     }
     
     public ArrayList<Tile> getAllTiles()
@@ -40,12 +45,21 @@ public class MapController
         this.allTiles = allTiles;
     }
 
-    public String readXml()
+    private void createNewTile(int id,int x,int y)
     {
-        ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance()
-                .getExternalContext().getContext();
-        String realPath = ctx.getRealPath("/data/tileData.xml");
-        allTiles = XmlParser.parseXml(realPath);
-        return null;
+        Tile t=this.allTiles.get(id);
+        Tile newTile=new Tile(id ,x,y,t.getWorkerPositions(),t.getTypeCoordinates());
+        
+        tilesOnGame.add(newTile);
+    }
+
+    public ArrayList<Tile> getTilesOnGame()
+    {
+        return tilesOnGame;
+    }
+
+    public void setTilesOnGame(ArrayList<Tile> tilesOnGame)
+    {
+        this.tilesOnGame = tilesOnGame;
     }
 }
