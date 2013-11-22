@@ -1,0 +1,42 @@
+Vanha manuaalisesti tehty pelilauta:
+
+                            <table id="gameBoardTable">
+                                <tr id="gameBoardRow-2">
+                                    <td id="-2_-1" class="newTilePlaceHolder tileHolderTD"></td>
+                                    <td id="-2_0" class="tileHolderTD"></td>
+                                    <td id="-2_1" class="newTilePlaceHolder tileHolderTD"></td>
+                                    <td id="-2_2" class="tileHolderTD"></td>
+                                </tr>
+                                <tr id="gameBoardRow-1">
+                                    <td id="-1_-1" class="tileHolderTD"></td>
+                                    <td id="-1_0" class="tileHolderTD"></td>
+                                    <td id="-1_1" class="newTilePlaceHolder tileHolderTD"></td>
+                                    <td id="-1_2" class="tileHolderTD"></td>
+                                </tr>
+                                <tr id="gameBoardRow0">
+                                    <td id="0_-1" class="tileHolderTD"></td>
+                                    <td id="0_0" class="tileHolderTD"></td>
+                                    <td id="0_1" class="newTilePlaceHolder tileHolderTD"></td>
+                                    <td id="0_2" class="tileHolderTD"></td>
+                                </tr>
+                                <tr id="gameBoardRow1">
+                                    <td id="1_-1" class="newTilePlaceHolder tileHolderTD"></td>
+                                    <td id="1_0" class="newTilePlaceHolder tileHolderTD"></td>
+                                    <td id="1_1" class="tileHolderTD"><img src="css/images/mapTilePlaceholder.png" alt="loading.." /></td>
+                                    <td id="1_2" class="newTilePlaceHolder tileHolderTD"></td>
+                                </tr>
+                                <tr id="gameBoardRow2">
+                                    <td id="2_-1" class="tileHolderTD"></td>
+                                    <td id="2_0" class="tileHolderTD"></td>
+                                    <td id="2_1" class="newTilePlaceHolder tileHolderTD"></td>
+                                    <td id="2_2" class="tileHolderTD"></td>
+                                </tr>
+                                <tr id="gameBoardRow3">
+                                    <td id="3_-1" class="tileHolderTD"></td>
+                                    <td id="3_0" class="tileHolderTD"></td>
+                                    <td id="3_1" class="newTilePlaceHolder tileHolderTD"></td>
+                                    <td id="3_2" class="newTilePlaceHolder tileHolderTD"></td>
+                                </tr>
+                            </table>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------

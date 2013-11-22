@@ -87,8 +87,8 @@ public class Tile implements Comparable<Tile>
     @Override
     public int compareTo(Tile o)
     {
-        int lastCmp =Integer.compare(posX, o.posX);
-        return (lastCmp != 0 ? lastCmp : Integer.compare(posY, o.posY));
+        int lastCmp =Integer.compare(posY, o.posY);
+        return (lastCmp != 0 ? lastCmp : Integer.compare(posX, o.posX));
     }
             
 }
