@@ -4,9 +4,19 @@ $(function() {
 
 var newTileRotation = 0;
 var trueTileRotation, coordinates;
+var match = false;  // Tehdään tarkistin jolla tarkistetaan onko palikka löytänyt paikkansa.
+
+$(window).scroll(function() {
+    if(window.location.hash === "#gameBoardAnchor") {
+        $(window).scrollTop($(document).height());
+    }
+});
+
+$("#gameBoard").scroll(function(){
+    alert("scrolled!");
+});
 
 function checkNewTileLocation() {
-    var match = false;  // Tehdään tarkistin jolla tarkistetaan onko palikka löytänyt paikkansa.
     var smallestX = $("#gameBoardTable").find("td").attr("id").split("_")[0]; // Haetaan pienimmän x-koordinaati
     var smallestY = $("#gameBoardTable").find("td").attr("id").split("_")[1]; // Haetaan pienimmän y-koordinaati
     var temp_i = 0, temp_j = 0;

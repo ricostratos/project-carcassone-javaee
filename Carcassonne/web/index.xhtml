@@ -28,11 +28,16 @@
                 </div>
                 
                 <div id="gameBoard">
-                    <div id="pusher">
-                    <h:outputText value="#{MapController.printGameBoardTest()}" escape="false" /> <!-- Pelilaudan tulostus -->
-                    </div>
+                    <table>
+                        <tr>
+                            <td class="pusher"><img src="css/images/pusher.png" alt="" /></td>
+                            <td>
+                                <h:outputText value="#{MapController.printGameBoardTest()}" escape="false" /> <!-- Pelilaudan tulostus -->
+                            </td>
+                            <td class="pusher"><img src="css/images/pusher.png" alt="" /></td>
+                        </tr>
+                    </table>
                 </div>
-                
             </div>
             <div id="footer">&copy; Resist Posse</div>
         </div>

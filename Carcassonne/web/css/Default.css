@@ -91,15 +91,14 @@ body {
     
     overflow: scroll;
 }
-#pusher {
-    width: 100%;
-    margin-right: 30px;
+#gameBoard table {
+    margin-left: auto;
+    margin-right: auto;
 }
 #gameBoardTable {
     border-collapse: collapse;
     padding: 0;
     
-    margin-left: auto;
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -111,9 +110,33 @@ body {
     border: 1px solid rgba(255,255,255,0.3);
 }
 
-.tileHolderTD {
+.tileHolderTD0 {
     width: 100px;
     height: 100px;
+}
+.tileHolderTD90 {
+    width: 100px;
+    height: 100px;
+    
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+}
+.tileHolderTD180 {
+    width: 100px;
+    height: 100px;
+    
+    transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+.tileHolderTD270 {
+    width: 100px;
+    height: 100px;
+    
+    transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
 }
 .newTilePlaceHolder {
     width: 100px;
@@ -126,6 +149,7 @@ body {
     height: 100px;
     position: absolute;
     cursor: move;
+    z-index: 1;
 }
 #newTileImage {
     transition: 0.4s;
@@ -137,6 +161,7 @@ body {
     position: absolute;
     width: 150px;
     text-align: center;
+    z-index: 1;
 }
 #rotator .pusher {
     width: 50px;
