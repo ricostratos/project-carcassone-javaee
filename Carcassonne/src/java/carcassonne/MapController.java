@@ -64,6 +64,8 @@ public class MapController
         createNewTile(5,-8,-1);
         createNewTile(5,-9,-1);
         createNewTile(5,-10,-1);
+        createNewTile(5,-11,-1);
+        createNewTile(5,-12,-1);
         Collections.sort(tilesInGame);
     }
     
@@ -122,7 +124,7 @@ public class MapController
         this.gameBoardTest = "<table id='gameBoardTable'>";
         for(int i=-1; i<this.boardHeight+1;i++){
             this.gameBoardTest = this.gameBoardTest + "<tr id='gameBoardRow"+(this.tileMinY+i)+"'>";
-            for(int j=-2; j<this.boardWidth+2;j++) {
+            for(int j=-3; j<this.boardWidth+3;j++) {
                 this.gameBoardTest = this.gameBoardTest + "<td id='"+(this.tileMinX+j)+"_"+(this.tileMinY+i)+"' class='";
                 
                 if(this.tilesInGame.get(indexCheck).getPosX() == (j+tileMinX) && this.tilesInGame.get(indexCheck).getPosY() == (i+tileMinY)) {

@@ -105,10 +105,12 @@ body {
 }
 #gameBoardTable img {
     margin: -2px;
+    width: 102px;
     padding: 0;
     margin-bottom: -10px;
     border: 1px solid rgba(255,255,255,0.3);
 }
+
 .tileHolderTD {
     width: 100px;
     height: 100px;
