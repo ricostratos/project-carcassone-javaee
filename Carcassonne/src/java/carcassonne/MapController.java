@@ -46,6 +46,15 @@ public class MapController
         createNewTile(1,1,0);
         createNewTile(7,-1,0);
         createNewTile(5,-1,-1);
+        createNewTile(5,-1,-2);
+        createNewTile(5,-1,-3);
+        createNewTile(5,-1,-4);
+        createNewTile(5,-1,-5);
+        createNewTile(5,-1,-6);
+        createNewTile(5,-1,-7);
+        createNewTile(5,-1,-8);
+        createNewTile(5,-1,-9);
+        createNewTile(5,-1,-10);
         Collections.sort(tilesInGame);
     }
     
@@ -94,46 +103,34 @@ public class MapController
                 tileMaxY = this.tilesInGame.get(i).getPosY();
             }
         }
-        boardWidth = Math.abs(tileMinX) + tileMaxX + 1; // 3 tulee keskimmäisestä paikasta 0_0 ja reunimmaisista, joihin luodaan paikat uusille laatoille
+        boardWidth = Math.abs(tileMinX) + tileMaxX + 1;
         boardHeight = Math.abs(tileMinY) + tileMaxY + 1;
-        
-        /*
-        int cellCounter=0,currentRow=0;
-        for(int i=0; i<this.tilesInGame.size(); i++) {
-            
-            
-            
-            cellCounter++;
-            if(cellCounter >= this.boardWidth) {
-                cellCounter=0;
-                currentRow++;
-            }
-        }*/
     }
     
     public String printGameBoardTest() {
         int indexCheck=0;
         boolean tileCheck = false;
         this.gameBoardTest = "<table id='gameBoardTable'>";
-        for(int i=-2; i<this.boardHeight;i++){
+        for(int i=-1; i<this.boardHeight+1;i++){
             this.gameBoardTest = this.gameBoardTest + "<tr id='gameBoardRow"+(this.tileMinY+i)+"'>";
-            for(int j=-2; j<this.boardWidth;j++) {
+            for(int j=-1; j<this.boardWidth+1;j++) {
                 this.gameBoardTest = this.gameBoardTest + "<td id='"+(this.tileMinX+j)+"_"+(this.tileMinY+i)+"' class='";
                 
-                if(this.tilesInGame.get(indexCheck).getPosX() == (j+tileMinX+1) && this.tilesInGame.get(indexCheck).getPosY() == (i+tileMinY+1)) {
+                if(this.tilesInGame.get(indexCheck).getPosX() == (j+tileMinX) && this.tilesInGame.get(indexCheck).getPosY() == (i+tileMinY)) {
                     tileCheck = true;
                 }
                 
                 for(int q=0; q<this.tilesInGame.size(); q++) {
                     try {
                     if(
-                            ((this.tilesInGame.get(q).getPosX() == (j+tileMinX) && this.tilesInGame.get(q).getPosY() == (i+tileMinY+1)) ||
-                            (this.tilesInGame.get(q).getPosX() == (j+tileMinX+1) && this.tilesInGame.get(q).getPosY() == (i+tileMinY+2)) ||
-                            (this.tilesInGame.get(q).getPosX() == (j+tileMinX+2) && this.tilesInGame.get(q).getPosY() == (i+tileMinY+1)) ||
-                            (this.tilesInGame.get(q).getPosX() == (j+tileMinX+1) && this.tilesInGame.get(q).getPosY() == (i+tileMinY))) &&
+                            ((this.tilesInGame.get(q).getPosX() == (j+tileMinX-1) && this.tilesInGame.get(q).getPosY() == (i+tileMinY)) ||
+                            (this.tilesInGame.get(q).getPosX() == (j+tileMinX) && this.tilesInGame.get(q).getPosY() == (i+tileMinY+1)) ||
+                            (this.tilesInGame.get(q).getPosX() == (j+tileMinX+1) && this.tilesInGame.get(q).getPosY() == (i+tileMinY)) ||
+                            (this.tilesInGame.get(q).getPosX() == (j+tileMinX) && this.tilesInGame.get(q).getPosY() == (i+tileMinY-1))) &&
                             !tileCheck
                       ) {
                         this.gameBoardTest = this.gameBoardTest + "newTilePlaceHolder ";
+                        break;
                     }
                     } catch(Exception lollero) {}
                 }
@@ -146,7 +143,7 @@ public class MapController
                         indexCheck++;
                     }
                     tileCheck = false;
-                }
+                } else {this.gameBoardTest = this.gameBoardTest + (j+tileMinX)+"_"+(i+tileMinY);}
                 this.gameBoardTest = this.gameBoardTest + "</td>";
             }
             this.gameBoardTest = this.gameBoardTest + "</tr>";
