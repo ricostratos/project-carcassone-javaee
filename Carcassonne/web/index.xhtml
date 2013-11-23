@@ -17,23 +17,21 @@
         #{MapController.prepareGameBoard()}     <!-- Valmistellaan pelilauta -->
         <div id="outerBody">
             <div id="banner"><img src="css/images/Banner.png" alt="Carcassonne" onclick="test()" /></div>
+            <a name="gameBoardAnchor"></a>
             <div id="navigation"><ui:include src="navigation.xhtml"></ui:include></div>
             <div id="content">
+                <div id="gameInfo">
+                    <div id="newTile" onmouseup="checkNewTileLocation()" onmousedown="rotatorHidden()"><img src="css/images/mapTilePlaceholder.png" alt="loading.." id="newTileImage" /></div>
+                    <div id="rotator">
+                        <img src="css/images/CW.png" alt="-" onclick="rotateCW()" /><h:button id="newTileReady" value="Valmis" onclick="newTileReady()"></h:button><img src="css/images/CCW.png" alt="-" onclick="rotateCCW()" />
+                    </div>
+                </div>
                 
-                <table id="setter">
-                    <tr>
-                        <td id="gameInfo" class="gameInfo">Pelin tiedot
-                            <div id="newTile" onmouseup="checkNewTileLocation()" onmousedown="rotatorHidden()"><img src="css/images/mapTilePlaceholder.png" alt="loading.." id="newTileImage" /></div>
-                            <div id="rotator">
-                                <img src="css/images/CW.png" alt="-" onclick="rotateCW()" /><h:button id="newTileReady" value="Valmis" onclick="newTileReady()"></h:button><img src="css/images/CCW.png" alt="-" onclick="rotateCCW()" />
-                            </div>
-                            <!-- Tänne pelin tiedot -->
-                        </td>
-                        <td id="gameBoard" class="gameBoard">
-                            <h:outputText value="#{MapController.printGameBoardTest()}" escape="false" /> <!-- Pelilaudan tulostus -->
-                        </td>
-                    </tr>
-                </table>
+                <div id="gameBoard">
+                    <div id="pusher">
+                    <h:outputText value="#{MapController.printGameBoardTest()}" escape="false" /> <!-- Pelilaudan tulostus -->
+                    </div>
+                </div>
                 
             </div>
             <div id="footer">&copy; Resist Posse</div>

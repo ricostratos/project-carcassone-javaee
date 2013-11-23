@@ -13,6 +13,7 @@ body {
     width:94%;
     margin-left: 3%;
     margin-right: 3%;
+    margin-bottom: 15px;
     
     background: #dfd1ab;
     border: 1px solid rgba(64,47,1,0.8);
@@ -76,38 +77,37 @@ body {
     
     border: 1px solid #000;
     
-    background: #ccbc92;
+    background: url('images/gameBoardBackground.png');
 }
-#setter {
-    margin: 0;
-    padding: 0;
-    border-collapse: collapse;
+#gameInfo {
     width: 100%;
-    background: url('images/gameBoardBackground.png') repeat;
+    height: 150px;
+    
+    background: url('images/border.png') repeat-x rgba(168,154,121,0.6) bottom;
 }
-#setter .gameBoard {
-    width: 80%;
-    background: url('images/border2.png') repeat-y;
-    padding-left: 45px;
+#gameBoard {
+    width: auto;
+    padding-top: 40px;
+    
+    overflow: scroll;
 }
-#setter .gameInfo {
-    width: 20%;
-    background: url('images/corner.png') no-repeat rgba(168,154,121,0.6);
+#pusher {
+    width: 100%;
+    margin-right: 30px;
 }
 #gameBoardTable {
     border-collapse: collapse;
     padding: 0;
     
     margin-left: auto;
-    margin-right: auto;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 #gameBoardTable img {
-    margin: -1px;
+    margin: -2px;
     padding: 0;
     margin-bottom: -10px;
-    border: 1px solid #000;
+    border: 1px solid rgba(255,255,255,0.3);
 }
 .tileHolderTD {
     width: 100px;

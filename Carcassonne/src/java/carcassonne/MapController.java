@@ -55,6 +55,15 @@ public class MapController
         createNewTile(5,-1,-8);
         createNewTile(5,-1,-9);
         createNewTile(5,-1,-10);
+        createNewTile(5,-2,-1);
+        createNewTile(5,-3,-1);
+        createNewTile(5,-4,-1);
+        createNewTile(5,-5,-1);
+        createNewTile(5,-6,-1);
+        createNewTile(5,-7,-1);
+        createNewTile(5,-8,-1);
+        createNewTile(5,-9,-1);
+        createNewTile(5,-10,-1);
         Collections.sort(tilesInGame);
     }
     
@@ -109,11 +118,11 @@ public class MapController
     
     public String printGameBoardTest() {
         int indexCheck=0;
-        boolean tileCheck = false;
+        boolean tileCheck = false, addImage = false;
         this.gameBoardTest = "<table id='gameBoardTable'>";
         for(int i=-1; i<this.boardHeight+1;i++){
             this.gameBoardTest = this.gameBoardTest + "<tr id='gameBoardRow"+(this.tileMinY+i)+"'>";
-            for(int j=-1; j<this.boardWidth+1;j++) {
+            for(int j=-2; j<this.boardWidth+2;j++) {
                 this.gameBoardTest = this.gameBoardTest + "<td id='"+(this.tileMinX+j)+"_"+(this.tileMinY+i)+"' class='";
                 
                 if(this.tilesInGame.get(indexCheck).getPosX() == (j+tileMinX) && this.tilesInGame.get(indexCheck).getPosY() == (i+tileMinY)) {
@@ -130,6 +139,7 @@ public class MapController
                             !tileCheck
                       ) {
                         this.gameBoardTest = this.gameBoardTest + "newTilePlaceHolder ";
+                        addImage = true;
                         break;
                     }
                     } catch(Exception lollero) {}
@@ -143,7 +153,10 @@ public class MapController
                         indexCheck++;
                     }
                     tileCheck = false;
-                } else {this.gameBoardTest = this.gameBoardTest + (j+tileMinX)+"_"+(i+tileMinY);}
+                } else if(addImage) {
+                    this.gameBoardTest = this.gameBoardTest + "<img src='data/tiles/newTilePlaceHolder.png' alt='loading' />";
+                    addImage = false;
+                }// else {this.gameBoardTest = this.gameBoardTest + (j+tileMinX)+"_"+(i+tileMinY);}
                 this.gameBoardTest = this.gameBoardTest + "</td>";
             }
             this.gameBoardTest = this.gameBoardTest + "</tr>";
