@@ -12,7 +12,7 @@ $(window).scroll(function() {
     }
 });
 
-$("#gameBoard").scroll(function(){
+$("#gameBoard").live("scroll",null,function(){
     alert("scrolled!");
 });
 
@@ -60,7 +60,14 @@ function newTileReady() {
     rotatorHidden();
     trueTileRotation = newTileRotation % 360;
     if(trueTileRotation < 0) trueTileRotation += 360;
-    alert("Palikka asetettu.\nRotation: "+newTileRotation+"\nmod(360): "+trueTileRotation+"\nKoordinaatit:\n X:"+coordinates.split("_")[0]+"\n Y:"+coordinates.split("_")[1]);
+    $("[id*='newTileCoordX']").val(coordinates.split("_")[0]);
+    $("[id*='newTileCoordY']").val(coordinates.split("_")[1]);
+    $("[id*='newTileRotation']").val(trueTileRotation);
+    //alert("Palikka asetettu.\nRotation: "+newTileRotation+"\nmod(360): "+trueTileRotation+"\nKoordinaatit:\n X:"+coordinates.split("_")[0]+"\n Y:"+coordinates.split("_")[1]);
+    
+    $("#newTile").css("opacity","1");
+    $("#newTile").css("left",$("#gameInfo").position().left+1);
+    $("#newTile").css("top",$("#gameInfo").position().top+179);
 }
 
 function rotateCW() {

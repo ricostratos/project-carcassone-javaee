@@ -15,28 +15,34 @@
     </h:head>
     <h:body>
         #{MapController.prepareGameBoard()}     <!-- Valmistellaan pelilauta -->
+        #{MapController.createNewTile()}        <!-- Luodaan uusi palikka -->
         <div id="outerBody">
             <div id="banner"><img src="css/images/Banner.png" alt="Carcassonne" onclick="test()" /></div>
             <a name="gameBoardAnchor"></a>
             <div id="navigation"><ui:include src="navigation.xhtml"></ui:include></div>
             <div id="content">
                 <div id="gameInfo">
-                    <div id="newTile" onmouseup="checkNewTileLocation()" onmousedown="rotatorHidden()"><img src="css/images/mapTilePlaceholder.png" alt="loading.." id="newTileImage" /></div>
-                    <div id="rotator">
-                        <img src="css/images/CW.png" alt="-" onclick="rotateCW()" /><h:button id="newTileReady" value="Valmis" onclick="newTileReady()"></h:button><img src="css/images/CCW.png" alt="-" onclick="rotateCCW()" />
-                    </div>
+                    <div id="newTile" onmouseup="checkNewTileLocation()" onmousedown="rotatorHidden()"><img src="data/tiles/#{MapController.newTile.id}.png" alt="loading.." id="newTileImage" /></div>
                 </div>
                 
                 <div id="gameBoard">
+                    <h:form>
+                        <h:inputHidden id="newTileCoordX" value="#{MapController.newTile.posX}" />
+                        <h:inputHidden id="newTileCoordY" value="#{MapController.newTile.posY}" />
+                        <h:inputHidden id="newTileRotation" value="#{MapController.newTile.rotation}" />
                     <table>
                         <tr>
                             <td class="pusher"><img src="css/images/pusher.png" alt="" /></td>
                             <td>
-                                <h:outputText value="#{MapController.printGameBoardTest()}" escape="false" /> <!-- Pelilaudan tulostus -->
+                                <h:outputText id="ajaxGameBoard" value="#{MapController.printGameBoardTest()}" escape="false" /> <!-- Pelilaudan tulostus -->
                             </td>
                             <td class="pusher"><img src="css/images/pusher.png" alt="" /></td>
                         </tr>
                     </table>
+                    <div id="rotator">
+                        <img src="css/images/CW.png" alt="-" onclick="rotateCW()" /><h:commandButton id="newTileReady" value="Valmis" onclick="newTileReady()" action="#{MapController.addNewTileToGameBoard()}"></h:commandButton><img src="css/images/CCW.png" alt="-" onclick="rotateCCW()" />
+                    </div>
+                    </h:form>
                 </div>
             </div>
             <div id="footer">&copy; Resist Posse</div>
