@@ -251,7 +251,7 @@ public class MapController
     public Boolean compareNeighbours()
     {
         ArrayList<String> lista = new ArrayList<String>();
-        ArrayList<String> lista1 = new ArrayList<String>();
+        ArrayList<String> listaold = new ArrayList<String>();
         ArrayList<Boolean> oikeinko = new ArrayList<Boolean>();
         Boolean ok = true;
         
@@ -262,71 +262,241 @@ public class MapController
         
         String side = "";
         
-        /*
-        mlllm,
-        -mmm-,
-        ttt--,
-        -----,
-        -----
-        */
-        
-        //17
         for (Tile item : viereisetPalat) 
         {
             oldTileData = item.getTypeCoordinates();
-            lista1 = oldTileData.getTypes();
-            if (item.getPosX() > this.newTile.getPosX()) 
+            listaold = oldTileData.getTypes();
+            
+            switch(this.newTile.getRotation())
             {
-                side = "Right";
-                
-                if (lista1.get(10).equals(lista.get(14))) 
-                {
-                    oikeinko.add(true);
-                }
-                else
-                {
-                    oikeinko.add(false);
-                }
+
+                case 0:
+                    //<editor-fold desc="Rot 0">
+                    if (item.getPosX() > this.newTile.getPosX()) 
+                    {
+                        side = "Right";
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(10)+"|"+lista.get(14));
+                        if (listaold.get(10).equals(lista.get(14))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    if (item.getPosX() < this.newTile.getPosX()) 
+                    {
+                        side = "Left";
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(14)+"|"+lista.get(10));
+                        if (listaold.get(14).equals(lista.get(10))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    if (item.getPosY() < this.newTile.getPosY()) 
+                    {
+                        side = "Top"; 
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(22)+"|"+lista.get(2));
+                        if (listaold.get(22).equals(lista.get(2))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    if (item.getPosY() > this.newTile.getPosY()) 
+                    {
+                        side = "Bottom";
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(2)+"|"+lista.get(22));
+                        if (listaold.get(2).equals(lista.get(22))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    //</editor-fold>
+                    break;
+                case 90:
+                    //<editor-fold desc="Rot 90">
+                    if (item.getPosX() > this.newTile.getPosX()) 
+                    {
+                        side = "Right";
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(10)+"|"+lista.get(2));
+                        if (listaold.get(10).equals(lista.get(2))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    if (item.getPosX() < this.newTile.getPosX()) 
+                    {
+                        side = "Left";
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(14)+"|"+lista.get(22));
+                        if (listaold.get(14).equals(lista.get(22))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    if (item.getPosY() < this.newTile.getPosY()) 
+                    {
+                        side = "Top"; 
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(22)+"|"+lista.get(10));
+                        if (listaold.get(22).equals(lista.get(10))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    if (item.getPosY() > this.newTile.getPosY()) 
+                    {
+                        side = "Bottom";
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(2)+"|"+lista.get(14));
+                        if (listaold.get(2).equals(lista.get(14))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    //</editor-fold>
+                    break;
+                case 180:
+                    //<editor-fold desc="Rot 180">
+                    if (item.getPosX() > this.newTile.getPosX()) 
+                    {
+                        side = "Right";
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(10)+"|"+lista.get(10));
+                        if (listaold.get(10).equals(lista.get(10))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    if (item.getPosX() < this.newTile.getPosX()) 
+                    {
+                        side = "Left";
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(14)+"|"+lista.get(14));
+                        if (listaold.get(14).equals(lista.get(14))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    if (item.getPosY() < this.newTile.getPosY()) 
+                    {
+                        side = "Top"; 
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(22)+"|"+lista.get(22));
+                        if (listaold.get(22).equals(lista.get(22))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    if (item.getPosY() > this.newTile.getPosY()) 
+                    {
+                        side = "Bottom";
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(2)+"|"+lista.get(2));
+                        if (listaold.get(2).equals(lista.get(2))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    //</editor-fold>
+                    break;
+                case 270:
+                    //<editor-fold desc="Rot 270">
+                    if (item.getPosX() > this.newTile.getPosX()) 
+                    {
+                        side = "Right";
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(10)+"|"+lista.get(22));
+                        if (listaold.get(10).equals(lista.get(22))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    if (item.getPosX() < this.newTile.getPosX()) 
+                    {
+                        side = "Left";
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(14)+"|"+lista.get(2));
+                        if (listaold.get(14).equals(lista.get(2))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    if (item.getPosY() < this.newTile.getPosY()) 
+                    {
+                        side = "Top"; 
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(22)+"|"+lista.get(14));
+                        if (listaold.get(22).equals(lista.get(14))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    if (item.getPosY() > this.newTile.getPosY()) 
+                    {
+                        side = "Bottom";
+                        System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(2)+"|"+lista.get(10));
+                        if (listaold.get(2).equals(lista.get(10))) 
+                        {
+                            oikeinko.add(true);
+                        }
+                        else
+                        {
+                            oikeinko.add(false);
+                        }
+                    }
+                    //</editor-fold>
+                    break;
+                default: break;
             }
-            if (item.getPosX() < this.newTile.getPosX()) 
-            {
-                side = "Left";
-                
-                if (lista1.get(14).equals(lista.get(10))) 
-                {
-                    oikeinko.add(true);
-                }
-                else
-                {
-                    oikeinko.add(false);
-                }
-            }
-            if (item.getPosY() < this.newTile.getPosY()) 
-            {
-                side = "Top"; 
-                
-                if (lista1.get(22).equals(lista.get(2))) 
-                {
-                    oikeinko.add(true);
-                }
-                else
-                {
-                    oikeinko.add(false);
-                }
-            }
-            if (item.getPosY() > this.newTile.getPosY()) 
-            {
-                side = "Bottom";
-                
-                if (lista1.get(2).equals(lista.get(22))) 
-                {
-                    oikeinko.add(true);
-                }
-                else
-                {
-                    oikeinko.add(false);
-                }
-            }
+            System.out.println(this.newTile.getRotation());
         }
         
         for (Boolean item : oikeinko) 
@@ -335,6 +505,7 @@ public class MapController
                 ok = false;
             }
         }
+        oikeinko.clear();
         
         return ok;
     }
