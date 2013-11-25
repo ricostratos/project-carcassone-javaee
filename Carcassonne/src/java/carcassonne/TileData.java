@@ -13,16 +13,36 @@ import java.util.ArrayList;
 public class TileData
 {
 
-    private ArrayList<int[]> grass, city, road, block, church, wall;
+    private ArrayList<int[]> grass, city, road, block, church, wall, coords;
+    private ArrayList<String> types;
 
-    public TileData()
-    {
-        grass=new ArrayList();
-        city=new ArrayList();
-        road=new ArrayList();
-        block=new ArrayList();
-        church=new ArrayList();
-        wall=new ArrayList();
+    public TileData() {
+        grass = new ArrayList<int[]>();
+        city = new ArrayList<int[]>();
+        road = new ArrayList<int[]>();
+        block = new ArrayList<int[]>();
+        church = new ArrayList<int[]>();
+        wall = new ArrayList<int[]>();
+        coords = new ArrayList<int[]>();
+        types = new ArrayList<String>();
+    }
+
+    
+
+    public ArrayList<int[]> getCoords() {
+        return coords;
+    }
+
+    public void setCoords(ArrayList<int[]> coords) {
+        this.coords = coords;
+    }
+
+    public ArrayList<String> getTypes() {
+        return types;
+    }
+
+    public void setTypes(ArrayList<String> types) {
+        this.types = types;
     }
 
     public ArrayList<int[]> getGrass()
@@ -85,6 +105,16 @@ public class TileData
         this.wall = wall;
     }
 
+    public void addAllCoordinates(int[] coords)
+    {
+        this.coords.add(coords);
+    }
+        
+    public void addAllTypes(String type)
+    {
+        this.types.add(type);
+    }
+    
     public void addWallCoordinates(int[] wall)
     {
         this.wall.add(wall);

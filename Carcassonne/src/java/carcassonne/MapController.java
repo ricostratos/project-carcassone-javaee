@@ -21,6 +21,7 @@ import javax.servlet.ServletContext;
 public class MapController
 {
     private ArrayList<Tile> allTiles=new ArrayList();
+    private ArrayList<Tile> viereisetPalat = new ArrayList();
     private ArrayList<Tile> tilesInGame=new ArrayList();
     private int boardWidth,boardHeight;
     private String printGameBoard;
@@ -189,13 +190,37 @@ public class MapController
     }
     
     public void addNewTileToGameBoard() {
+        
         boolean ok = true;
+        viereisetPalat.clear();
+        
         for(int i=0; i<this.tilesInGame.size(); i++) {
             if(this.tilesInGame.get(i).getPosX() == this.newTile.getPosX() && this.tilesInGame.get(i).getPosY() == this.newTile.getPosY()) {
                 ok = false;
             }
         }
+        //Haetaan kaikki uuden palikan viereiset palikat.
+        for (Tile item : this.tilesInGame) 
+        {
+            if ( (this.newTile.getPosX() == (item.getPosX()+1) || this.newTile.getPosX() == (item.getPosX()-1) || this.newTile.getPosX() == item.getPosX()) &&
+                    (this.newTile.getPosY() == (item.getPosY()+1) || this.newTile.getPosY() ==(item.getPosY()-1) ||this.newTile.getPosY() ==item.getPosY() ) && 
+                    (this.newTile.getPosX() == item.getPosX() || this.newTile.getPosY() == item.getPosY())) 
+            {
+                viereisetPalat.add(item);
+            }
+        }
+        if (compareNeighbours()) 
+        {
+            ok = true;
+        }
+        else
+        {
+            ok = false;
+        }
+        
+        
         if(ok) {
+            System.out.println("Uusi palikka lisätty "+this.newTile.getPosX()+", "+this.newTile.getPosY()+" ,"+this.newTile.getRotation());
             this.tilesInGame.add(newTile);
             Collections.sort(tilesInGame);
         }
@@ -207,5 +232,110 @@ public class MapController
 
     public void setNewTile(Tile newTile) {
         this.newTile = newTile;
+    }
+    
+    public void rotateCW()
+    {
+        int rot = getNewTileRotation();
+        rot =+ 90;
+        setNewTileRotation(rot);
+    }
+    
+    public void rotateCCW()
+    {
+        int rot = getNewTileRotation();
+        rot =- 90;
+        setNewTileRotation(rot);
+    }
+    
+    public Boolean compareNeighbours()
+    {
+        ArrayList<String> lista = new ArrayList<String>();
+        ArrayList<String> lista1 = new ArrayList<String>();
+        ArrayList<Boolean> oikeinko = new ArrayList<Boolean>();
+        Boolean ok = true;
+        
+        TileData oldTileData = new TileData();
+        TileData newTileData = new TileData();
+        newTileData = this.newTile.getTypeCoordinates();
+        lista = newTileData.getTypes();
+        
+        String side = "";
+        
+        /*
+        mlllm,
+        -mmm-,
+        ttt--,
+        -----,
+        -----
+        */
+        
+        //17
+        for (Tile item : viereisetPalat) 
+        {
+            oldTileData = item.getTypeCoordinates();
+            lista1 = oldTileData.getTypes();
+            if (item.getPosX() > this.newTile.getPosX()) 
+            {
+                side = "Right";
+                
+                if (lista1.get(10).equals(lista.get(14))) 
+                {
+                    oikeinko.add(true);
+                }
+                else
+                {
+                    oikeinko.add(false);
+                }
+            }
+            if (item.getPosX() < this.newTile.getPosX()) 
+            {
+                side = "Left";
+                
+                if (lista1.get(14).equals(lista.get(10))) 
+                {
+                    oikeinko.add(true);
+                }
+                else
+                {
+                    oikeinko.add(false);
+                }
+            }
+            if (item.getPosY() < this.newTile.getPosY()) 
+            {
+                side = "Top"; 
+                
+                if (lista1.get(22).equals(lista.get(2))) 
+                {
+                    oikeinko.add(true);
+                }
+                else
+                {
+                    oikeinko.add(false);
+                }
+            }
+            if (item.getPosY() > this.newTile.getPosY()) 
+            {
+                side = "Bottom";
+                
+                if (lista1.get(2).equals(lista.get(22))) 
+                {
+                    oikeinko.add(true);
+                }
+                else
+                {
+                    oikeinko.add(false);
+                }
+            }
+        }
+        
+        for (Boolean item : oikeinko) 
+        {
+            if (item == false) {
+                ok = false;
+            }
+        }
+        
+        return ok;
     }
 }

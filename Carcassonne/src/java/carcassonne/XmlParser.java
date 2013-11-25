@@ -88,21 +88,33 @@ public class XmlParser
                 {
                     case '-':
                         tiledata.addGrassCoordinates(coords);
+                        tiledata.addAllCoordinates(coords);
+                        tiledata.addAllTypes("-");
                         break;
                     case 'm':
                         tiledata.addWallCoordinates(coords);
+                        tiledata.addAllCoordinates(coords);
+                        tiledata.addAllTypes("m");
                         break;
                     case 'l':
                         tiledata.addCityCoordinates(coords);
+                        tiledata.addAllCoordinates(coords);
+                        tiledata.addAllTypes("l");
                         break;
                     case 't':
                         tiledata.addRoadCoordinates(coords);
+                        tiledata.addAllCoordinates(coords);
+                        tiledata.addAllTypes("t");
                         break;
                     case 'e':
                         tiledata.addBlockCoordinates(coords);
+                        tiledata.addAllCoordinates(coords);
+                        tiledata.addAllTypes("e");
                         break;
                     case 'k':
                         tiledata.addChurchCoordinates(coords);
+                        tiledata.addAllCoordinates(coords);
+                        tiledata.addAllTypes("k");
                         break;
                     default:
                         break;
