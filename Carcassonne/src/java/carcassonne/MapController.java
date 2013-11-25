@@ -220,7 +220,16 @@ public class MapController
         
         if(ok) 
         {
-            //this.newTile.getTypeCoordinates().setTypes(rotateTileData());
+            ArrayList<String> asd = this.newTile.getTypeCoordinates().getTypes();
+                
+            System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
+            System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
+            System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
+            System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
+            System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
+            System.out.println("------Finished------");
+            
+            System.out.println();
             System.out.println("Uusi palikka lisätty "+this.newTile.getPosX()+", "+this.newTile.getPosY()+" ,"+this.newTile.getRotation());
             this.tilesInGame.add(newTile);
             Collections.sort(tilesInGame);
@@ -259,6 +268,16 @@ public class MapController
         this.newTile.getTypeCoordinates().setTypes(rotateTileData());
         lista = this.newTile.getTypeCoordinates().getTypes();
         
+        
+        ArrayList<String> asd = lista;
+        
+        System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
+        System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
+        System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
+        System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
+        System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
+        System.out.println("-----"+"Rotated"+"-------");
+        
         String side = "";
         
         for (Tile item : viereisetPalat) 
@@ -269,7 +288,6 @@ public class MapController
             if (item.getPosX() > this.newTile.getPosX()) 
             {
                 side = "Right";
-                System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(10)+"|"+lista.get(14));
                 if (listaold.get(10).equals(lista.get(14))) 
                 {
                     oikeinko.add(true);
@@ -282,7 +300,6 @@ public class MapController
             if (item.getPosX() < this.newTile.getPosX()) 
             {
                 side = "Left";
-                System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(14)+"|"+lista.get(10));
                 if (listaold.get(14).equals(lista.get(10))) 
                 {
                     oikeinko.add(true);
@@ -295,7 +312,6 @@ public class MapController
             if (item.getPosY() < this.newTile.getPosY()) 
             {
                 side = "Top"; 
-                System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(22)+"|"+lista.get(2));
                 if (listaold.get(22).equals(lista.get(2))) 
                 {
                     oikeinko.add(true);
@@ -309,7 +325,6 @@ public class MapController
             if (item.getPosY() > this.newTile.getPosY()) 
             {
                 side = "Bottom";
-                System.out.println(this.newTile.getRotation()+" "+side+" "+listaold.get(2)+"|"+lista.get(22));
                 if (listaold.get(2).equals(lista.get(22))) 
                 {
                     oikeinko.add(true);
@@ -319,6 +334,18 @@ public class MapController
                     oikeinko.add(false);
                 }
             }
+            
+            asd = listaold;
+            
+            System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
+            System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
+            System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
+            System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
+            System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
+            System.out.println("-----"+side+"-------");
+            
+            
+            
             //</editor-fold>
         }
         
@@ -340,6 +367,15 @@ public class MapController
         ArrayList<String> uusiLista = new ArrayList<String>();
         
         vanhaLista = this.newTile.getTypeCoordinates().getTypes();
+        
+        ArrayList<String> asd = vanhaLista;
+        
+        System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
+        System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
+        System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
+        System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
+        System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
+        System.out.println("------"+this.newTile.getRotation()+"------");
         
         String[][] listaMatriisi = {
                             {vanhaLista.get(0), vanhaLista.get(1), vanhaLista.get(2),vanhaLista.get(3),vanhaLista.get(4)},
