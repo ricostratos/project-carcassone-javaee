@@ -152,9 +152,8 @@ public class MapController
     */
     
     public void createNewTile() {
-        if(newTile != null) {
-            newTile = null;
-        }
+        newTile = null;
+            
         int newId = rnd.nextInt(24);
         newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerPositions(),this.allTiles.get(newId).getTypeCoordinates());
     }
@@ -244,7 +243,7 @@ public class MapController
         this.newTile = newTile;
     }
     
-    public void rotateCW()
+    /*public void rotateCW()
     {
         int rot = this.newTile.getRotation();
         rot =+ 90;
@@ -257,7 +256,7 @@ public class MapController
         int rot = this.newTile.getRotation();
         rot =- 90;
         this.newTile.setRotation(rot);
-    }
+    }*/
     
     public Boolean compareNeighbours()
     {
@@ -358,7 +357,7 @@ public class MapController
         }
         oikeinko.clear();
         
-        return ok;
+        return true;
     }
     
     public ArrayList<String> rotateTileData()
