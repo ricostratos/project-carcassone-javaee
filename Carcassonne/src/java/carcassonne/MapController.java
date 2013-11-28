@@ -357,7 +357,7 @@ public class MapController
         }
         oikeinko.clear();
         
-        return true;
+        return ok;
     }
     
     public ArrayList<String> rotateTileData()
