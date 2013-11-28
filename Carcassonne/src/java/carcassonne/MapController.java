@@ -246,16 +246,17 @@ public class MapController
     
     public void rotateCW()
     {
-        int rot = getNewTileRotation();
+        int rot = this.newTile.getRotation();
         rot =+ 90;
-        setNewTileRotation(rot);
+        //setNewTileRotation(rot);
+        this.newTile.setRotation(rot);
     }
     
     public void rotateCCW()
     {
-        int rot = getNewTileRotation();
+        int rot = this.newTile.getRotation();
         rot =- 90;
-        setNewTileRotation(rot);
+        this.newTile.setRotation(rot);
     }
     
     public Boolean compareNeighbours()
@@ -405,9 +406,10 @@ public class MapController
                 uusiLista = convertMatricetoList(listaMatriisi);
                 return uusiLista;
             default:
-                break;
+                return vanhaLista;
+                //break;
         }
-        return vanhaLista;
+        //return vanhaLista;
     }
     
     public ArrayList<String> convertMatricetoList(String[][] matrice)
