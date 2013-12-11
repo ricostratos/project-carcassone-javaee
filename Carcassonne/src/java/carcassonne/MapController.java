@@ -144,16 +144,24 @@ public class MapController
     */
     
     public void createNewTile() {
-        if (createTile) {
+        if (!tilesInGame.isEmpty()) {
+            if (createTile) {
             newTile = null;
 
             int newId = rnd.nextInt(24);
             newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerMatrix(),this.allTiles.get(newId).getTypeMatrix());
-        }
+            }
+            else {
+                int newId = this.newTile.getId();
+                newTile = null;
+
+                newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerMatrix(),this.allTiles.get(newId).getTypeMatrix());
+            }   
+        } 
         else {
-            int newId = this.newTile.getId();
             newTile = null;
-            
+
+            int newId = 10;
             newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerMatrix(),this.allTiles.get(newId).getTypeMatrix());
         }
     }

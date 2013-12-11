@@ -41,7 +41,7 @@ function checkNewTileLocation() {
     if(!match) {
         $("#newTile").css("opacity","1");
         $("#newTile").css("left",$("#gameInfo").position().left+1);
-        $("#newTile").css("top",$("#gameInfo").position().top+179);
+        $("#newTile").css("top",$("#gameInfo").position().top+10);
     }
 }
 
