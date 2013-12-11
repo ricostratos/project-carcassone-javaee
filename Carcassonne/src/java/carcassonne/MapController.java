@@ -29,6 +29,7 @@ public class MapController
     
     private Tile newTile;
     private Random rnd = new Random(System.currentTimeMillis());
+    private boolean createTile = true;
     
     public MapController()
     {
@@ -143,10 +144,12 @@ public class MapController
     */
     
     public void createNewTile() {
-        newTile = null;
+        if (createTile) {
+            newTile = null;
             
-        int newId = rnd.nextInt(24);
-        newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerPositions(),this.allTiles.get(newId).getTypeCoordinates());
+            int newId = rnd.nextInt(24);
+            newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerPositions(),this.allTiles.get(newId).getTypeCoordinates());
+        }
     }
     
     public void setNewTileX(int newTileX) {
@@ -210,41 +213,27 @@ public class MapController
         }
         if(ok) 
         {
-            System.out.println("Uusi palikka lisätty "+this.newTile.getPosX()+", "+this.newTile.getPosY()+" ,"+this.newTile.getRotation());
+            debugTile();
             this.tilesInGame.add(newTile);
             Collections.sort(tilesInGame);
+            createTile = true;
         }
         else
         {
+            debugTile();
+            createTile = false;
         }
     }
 
-    public void homoPetteri(int i){
-        
-            for(Tile item : this.tilesInGame){
-                if (this.newTile.getId() == item.getId() && (this.newTile.getPosX() != item.getPosX() && this.newTile.getPosY() != item.getPosY())) {
-                    
-                    ArrayList<String> asd = this.newTile.getTypeCoordinates().getTypes();
-                
-                    System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
-                    System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
-                    System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
-                    System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
-                    System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
-                    System.out.println("------"+i+"Uusi"+this.newTile.getRotation()+"------");
-                    
-                    
-                    ArrayList<String> asd1 = item.getTypeCoordinates().getTypes();
+    public void debugTile(){
+        ArrayList<String> asd = this.newTile.getTypeCoordinates().getTypes();
 
-                    System.out.println(asd1.get(0)+asd1.get(1)+asd1.get(2)+asd1.get(3)+asd1.get(4));
-                    System.out.println(asd1.get(5)+asd1.get(6)+asd1.get(7)+asd1.get(8)+asd1.get(9));
-                    System.out.println(asd1.get(10)+asd1.get(11)+asd1.get(12)+asd1.get(13)+asd1.get(14));
-                    System.out.println(asd1.get(15)+asd1.get(16)+asd1.get(17)+asd1.get(18)+asd1.get(19));
-                    System.out.println(asd1.get(20)+asd1.get(21)+asd1.get(22)+asd1.get(23)+asd1.get(24));
-                    System.out.println("------"+i+"Wanha"+item.getRotation()+"------");
-                }
-            }
-            
+        System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
+        System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
+        System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
+        System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
+        System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
+        System.out.println("------Uusi"+this.newTile.getRotation()+"------");
     }
     
     public Tile getNewTile() {
