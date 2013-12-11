@@ -29,6 +29,7 @@ public class MapController
     
     private Tile newTile;
     private Random rnd = new Random(System.currentTimeMillis());
+    private boolean createTile = true;
     
     public MapController()
     {
@@ -143,10 +144,18 @@ public class MapController
     */
     
     public void createNewTile() {
-        newTile = null;
+        if (createTile) {
+            newTile = null;
+
+            int newId = rnd.nextInt(24);
+            newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerMatrix(),this.allTiles.get(newId).getTypeMatrix());
+        }
+        else {
+            int newId = this.newTile.getId();
+            newTile = null;
             
-        int newId = rnd.nextInt(24);
-        newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerMatrix(),this.allTiles.get(newId).getTypeMatrix());
+            newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerMatrix(),this.allTiles.get(newId).getTypeMatrix());
+        }
     }
     
     public void setNewTileX(int newTileX) {
@@ -204,6 +213,10 @@ public class MapController
         {
             this.tilesInGame.add(newTile);
             Collections.sort(tilesInGame);
+            createTile = true;
+        }
+        else {
+            createTile = false; 
         }
           String side="";
             System.out.println("uusi pala");
