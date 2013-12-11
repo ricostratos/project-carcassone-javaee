@@ -49,15 +49,6 @@ public class MapController
         this.allTiles = allTiles;
     }
 
-    private void createNewTile(int id,int x,int y)
-    {
-        Tile t=this.allTiles.get(id);
-        Tile newTile=new Tile(id,x,y,t.getWorkerPositions(),t.getTypeCoordinates());
-        
-        tilesInGame.add(newTile);
-        Collections.sort(tilesInGame);
-    }
-
     public ArrayList<Tile> getTilesOnGame()
     {
         return tilesInGame;
@@ -193,6 +184,7 @@ public class MapController
         boolean ok = true;
         viereisetPalat.clear();
         
+        
         for(int i=0; i<this.tilesInGame.size(); i++) {
             if(this.tilesInGame.get(i).getPosX() == this.newTile.getPosX() && this.tilesInGame.get(i).getPosY() == this.newTile.getPosY()) {
                 ok = false;
@@ -216,25 +208,45 @@ public class MapController
         {
             ok = false;
         }
-        
         if(ok) 
         {
-            ArrayList<String> asd = this.newTile.getTypeCoordinates().getTypes();
-                
-            System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
-            System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
-            System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
-            System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
-            System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
-            System.out.println("------Finished------");
-            
-            System.out.println();
             System.out.println("Uusi palikka lisätty "+this.newTile.getPosX()+", "+this.newTile.getPosY()+" ,"+this.newTile.getRotation());
             this.tilesInGame.add(newTile);
             Collections.sort(tilesInGame);
         }
+        else
+        {
+        }
     }
 
+    public void homoPetteri(int i){
+        
+            for(Tile item : this.tilesInGame){
+                if (this.newTile.getId() == item.getId() && (this.newTile.getPosX() != item.getPosX() && this.newTile.getPosY() != item.getPosY())) {
+                    
+                    ArrayList<String> asd = this.newTile.getTypeCoordinates().getTypes();
+                
+                    System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
+                    System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
+                    System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
+                    System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
+                    System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
+                    System.out.println("------"+i+"Uusi"+this.newTile.getRotation()+"------");
+                    
+                    
+                    ArrayList<String> asd1 = item.getTypeCoordinates().getTypes();
+
+                    System.out.println(asd1.get(0)+asd1.get(1)+asd1.get(2)+asd1.get(3)+asd1.get(4));
+                    System.out.println(asd1.get(5)+asd1.get(6)+asd1.get(7)+asd1.get(8)+asd1.get(9));
+                    System.out.println(asd1.get(10)+asd1.get(11)+asd1.get(12)+asd1.get(13)+asd1.get(14));
+                    System.out.println(asd1.get(15)+asd1.get(16)+asd1.get(17)+asd1.get(18)+asd1.get(19));
+                    System.out.println(asd1.get(20)+asd1.get(21)+asd1.get(22)+asd1.get(23)+asd1.get(24));
+                    System.out.println("------"+i+"Wanha"+item.getRotation()+"------");
+                }
+            }
+            
+    }
+    
     public Tile getNewTile() {
         return newTile;
     }
@@ -243,7 +255,7 @@ public class MapController
         this.newTile = newTile;
     }
     
-    /*public void rotateCW()
+    public void rotateCW()
     {
         int rot = this.newTile.getRotation();
         rot =+ 90;
@@ -256,31 +268,24 @@ public class MapController
         int rot = this.newTile.getRotation();
         rot =- 90;
         this.newTile.setRotation(rot);
-    }*/
+    }
     
     public Boolean compareNeighbours()
     {
         ArrayList<String> lista = new ArrayList<String>();
         ArrayList<String> listaold = new ArrayList<String>();
         ArrayList<Boolean> oikeinko = new ArrayList<Boolean>();
+        TileData laatta = new TileData();
+        laatta.setTypes(rotateTileData());
         Boolean ok = true;
+
+        this.newTile.setTypeCoordinates(laatta);
         
-        this.newTile.getTypeCoordinates().setTypes(rotateTileData());
         lista = this.newTile.getTypeCoordinates().getTypes();
-        
-        
-        ArrayList<String> asd = lista;
-        
-        System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
-        System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
-        System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
-        System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
-        System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
-        System.out.println("-----"+"Rotated"+"-------");
         
         String side = "";
         
-        for (Tile item : viereisetPalat) 
+        for (Tile item : viereisetPalat)
         {
             listaold = item.getTypeCoordinates().getTypes();
             
@@ -334,18 +339,6 @@ public class MapController
                     oikeinko.add(false);
                 }
             }
-            
-            asd = listaold;
-            
-            System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
-            System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
-            System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
-            System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
-            System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
-            System.out.println("-----"+side+"-------");
-            
-            
-            
             //</editor-fold>
         }
         
@@ -362,20 +355,10 @@ public class MapController
     
     public ArrayList<String> rotateTileData()
     {
-        
         ArrayList<String> vanhaLista = new ArrayList<String>();
         ArrayList<String> uusiLista = new ArrayList<String>();
         
         vanhaLista = this.newTile.getTypeCoordinates().getTypes();
-        
-        ArrayList<String> asd = vanhaLista;
-        
-        System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
-        System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
-        System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
-        System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
-        System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
-        System.out.println("------"+this.newTile.getRotation()+"------");
         
         String[][] listaMatriisi = {
                             {vanhaLista.get(0), vanhaLista.get(1), vanhaLista.get(2),vanhaLista.get(3),vanhaLista.get(4)},
@@ -384,7 +367,7 @@ public class MapController
                             {vanhaLista.get(15),vanhaLista.get(16),vanhaLista.get(17),vanhaLista.get(18),vanhaLista.get(19)},
                             {vanhaLista.get(20),vanhaLista.get(21),vanhaLista.get(22),vanhaLista.get(23),vanhaLista.get(24)}
                         };
-
+        
         switch(this.newTile.getRotation())
         {
             case 0:
@@ -406,9 +389,7 @@ public class MapController
                 return uusiLista;
             default:
                 return vanhaLista;
-                //break;
         }
-        //return vanhaLista;
     }
     
     public ArrayList<String> convertMatricetoList(String[][] matrice)
