@@ -50,8 +50,8 @@ public class XmlParser
                     int id =Integer.parseInt(eElement.getAttribute("id"));
                     String typeCoordinates = eElement.getElementsByTagName("TypeCoordinates").item(0).getTextContent();
                     String workerPosition = eElement.getElementsByTagName("WorkerPosition").item(0).getTextContent();
-                    TileData wPositions = parseTileData(workerPosition);
-                    TileData tCoordianates =parseTileData(typeCoordinates);
+                    char[][] wPositions = parseTileData(workerPosition);
+                    char[][] tCoordianates =parseTileData(typeCoordinates);
                     Tile t=new Tile(id,0,0,wPositions,tCoordianates);
                     tiles.add(t);
                 }
@@ -64,18 +64,16 @@ public class XmlParser
         return tiles;
     }
 
-    private static TileData parseTileData(String str)
+    private static char[][] parseTileData(String str)
     {
-        TileData tiledata = new TileData();
+        char[][] tiledata = new char[5][5];
         String[] sArray = str.split(",");
         for (int j = 0; j < sArray.length; j++)
         {
             String line = sArray[j];
             for (int k = 0; k < line.length(); k++)
             {
-                int[] coords = new int[2];
-                coords[0] = k;
-                coords[1] = j;
+                tiledata[j][k]=line.charAt(k);
                 /*
                  * - peltoa
                  * m muuri
@@ -84,41 +82,7 @@ public class XmlParser
                  * e este(tiellä)
                  * k kirkko
                  */
-                switch (line.charAt(k))
-                {
-                    case '-':
-                        tiledata.addGrassCoordinates(coords);
-                        tiledata.addAllCoordinates(coords);
-                        tiledata.addAllTypes("-");
-                        break;
-                    case 'm':
-                        tiledata.addWallCoordinates(coords);
-                        tiledata.addAllCoordinates(coords);
-                        tiledata.addAllTypes("m");
-                        break;
-                    case 'l':
-                        tiledata.addCityCoordinates(coords);
-                        tiledata.addAllCoordinates(coords);
-                        tiledata.addAllTypes("l");
-                        break;
-                    case 't':
-                        tiledata.addRoadCoordinates(coords);
-                        tiledata.addAllCoordinates(coords);
-                        tiledata.addAllTypes("t");
-                        break;
-                    case 'e':
-                        tiledata.addBlockCoordinates(coords);
-                        tiledata.addAllCoordinates(coords);
-                        tiledata.addAllTypes("e");
-                        break;
-                    case 'k':
-                        tiledata.addChurchCoordinates(coords);
-                        tiledata.addAllCoordinates(coords);
-                        tiledata.addAllTypes("k");
-                        break;
-                    default:
-                        break;
-                }
+              
             }
         }
         return tiledata;

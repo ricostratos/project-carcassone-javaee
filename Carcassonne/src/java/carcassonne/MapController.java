@@ -49,15 +49,6 @@ public class MapController
         this.allTiles = allTiles;
     }
 
-    private void createNewTile(int id,int x,int y)
-    {
-        Tile t=this.allTiles.get(id);
-        Tile newTile=new Tile(id,x,y,t.getWorkerPositions(),t.getTypeCoordinates());
-        
-        tilesInGame.add(newTile);
-        Collections.sort(tilesInGame);
-    }
-
     public ArrayList<Tile> getTilesOnGame()
     {
         return tilesInGame;
@@ -155,7 +146,7 @@ public class MapController
         newTile = null;
             
         int newId = rnd.nextInt(24);
-        newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerPositions(),this.allTiles.get(newId).getTypeCoordinates());
+        newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerMatrix(),this.allTiles.get(newId).getTypeMatrix());
     }
     
     public void setNewTileX(int newTileX) {
@@ -208,31 +199,21 @@ public class MapController
                 viereisetPalat.add(item);
             }
         }
-        if (compareNeighbours()) 
-        {
-            ok = true;
-        }
-        else
-        {
-            ok = false;
-        }
         
-        if(ok) 
+        if(compareNeighbours() && ok) 
         {
-            ArrayList<String> asd = this.newTile.getTypeCoordinates().getTypes();
-                
-            System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
-            System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
-            System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
-            System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
-            System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
-            System.out.println("------Finished------");
-            
-            System.out.println();
-            System.out.println("Uusi palikka lisätty "+this.newTile.getPosX()+", "+this.newTile.getPosY()+" ,"+this.newTile.getRotation());
             this.tilesInGame.add(newTile);
             Collections.sort(tilesInGame);
         }
+          String side="";
+            System.out.println("uusi pala");
+            for (int i = 0; i < 5; ++i) {
+                for (int j = 0; j < 5; ++j) {
+                side+=this.newTile.getTypeMatrix()[i][j];
+                }
+                System.out.println(side);
+                side="";
+            }
     }
 
     public Tile getNewTile() {
@@ -243,10 +224,14 @@ public class MapController
         this.newTile = newTile;
     }
     
-    /*public void rotateCW()
+    public void rotateCW()
     {
         int rot = this.newTile.getRotation();
-        rot =+ 90;
+        rot += 90;
+        if(rot >270)
+        {
+            rot=0;
+        }
         //setNewTileRotation(rot);
         this.newTile.setRotation(rot);
     }
@@ -254,189 +239,79 @@ public class MapController
     public void rotateCCW()
     {
         int rot = this.newTile.getRotation();
-        rot =- 90;
+        rot -= 90;
+        if(rot < 0)
+        {
+            rot=270;
+        }
         this.newTile.setRotation(rot);
-    }*/
+    }
     
     public Boolean compareNeighbours()
     {
-        ArrayList<String> lista = new ArrayList<String>();
-        ArrayList<String> listaold = new ArrayList<String>();
-        ArrayList<Boolean> oikeinko = new ArrayList<Boolean>();
-        Boolean ok = true;
+        boolean palaKay=true;
+      char[][] viereisetTyypit;
         
-        this.newTile.getTypeCoordinates().setTypes(rotateTileData());
-        lista = this.newTile.getTypeCoordinates().getTypes();
-        
-        
-        ArrayList<String> asd = lista;
-        
-        System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
-        System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
-        System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
-        System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
-        System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
-        System.out.println("-----"+"Rotated"+"-------");
-        
+        this.newTile.rotateTileData();
+
         String side = "";
         
         for (Tile item : viereisetPalat) 
         {
-            listaold = item.getTypeCoordinates().getTypes();
+            viereisetTyypit = item.getTypeMatrix();
             
             //<editor-fold desc="If else hell">
-            if (item.getPosX() > this.newTile.getPosX()) 
-            {
-                side = "Right";
-                if (listaold.get(10).equals(lista.get(14))) 
-                {
-                    oikeinko.add(true);
-                }
-                else
-                {
-                    oikeinko.add(false);
-                }
-            }
             if (item.getPosX() < this.newTile.getPosX()) 
             {
-                side = "Left";
-                if (listaold.get(14).equals(lista.get(10))) 
+                side = "uusi pala viereisen palan oikealle puolelle";
+                if (viereisetTyypit[2][4] != this.newTile.getTypeMatrix()[2][0] ) 
                 {
-                    oikeinko.add(true);
+                    palaKay=false;
                 }
-                else
-                {
-                    oikeinko.add(false);
-                }
+                
             }
-            if (item.getPosY() < this.newTile.getPosY()) 
+            else if (item.getPosX() > this.newTile.getPosX()) 
             {
-                side = "Top"; 
-                if (listaold.get(22).equals(lista.get(2))) 
+                side = "uusi pala viereisen palan vasemmalle puolelle";
+               if (viereisetTyypit[2][0] != this.newTile.getTypeMatrix()[2][4] ) 
                 {
-                    oikeinko.add(true);
-                }
-                else
-                    
-                {
-                    oikeinko.add(false);
+                    palaKay=false;
                 }
             }
-            if (item.getPosY() > this.newTile.getPosY()) 
+            else if (item.getPosY() > this.newTile.getPosY()) 
             {
-                side = "Bottom";
-                if (listaold.get(2).equals(lista.get(22))) 
+                side = "uusi pala viereisen palan ylä puolelle"; 
+                if (viereisetTyypit[0][2] != this.newTile.getTypeMatrix()[4][2] ) 
                 {
-                    oikeinko.add(true);
-                }
-                else
-                {
-                    oikeinko.add(false);
+                    palaKay=false;
                 }
             }
+            else if (item.getPosY() < this.newTile.getPosY())
+            {
+                side = "uusi pala viereisen palan ala puolelle";
+               if (viereisetTyypit[4][2] != this.newTile.getTypeMatrix()[0][2] ) 
+                {
+                  palaKay=false;
+                }
+            }
+            if(!palaKay)
+            {
+            System.out.println(side);
+            side="";
+            System.out.println("viereinen pala");
+            for (int i = 0; i < 5; ++i) {
+                for (int j = 0; j < 5; ++j) {
+                side+=viereisetTyypit[i][j];
+                }
+                System.out.println(side);
+                side="";
+            }
             
-            asd = listaold;
-            
-            System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
-            System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
-            System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
-            System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
-            System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
-            System.out.println("-----"+side+"-------");
-            
-            
-            
+            }
             //</editor-fold>
         }
-        
-        for (Boolean item : oikeinko) 
-        {
-            if (item == false) {
-                ok = false;
-            }
-        }
-        oikeinko.clear();
-        
-        return ok;
-    }
-    
-    public ArrayList<String> rotateTileData()
-    {
-        
-        ArrayList<String> vanhaLista = new ArrayList<String>();
-        ArrayList<String> uusiLista = new ArrayList<String>();
-        
-        vanhaLista = this.newTile.getTypeCoordinates().getTypes();
-        
-        ArrayList<String> asd = vanhaLista;
-        
-        System.out.println(asd.get(0)+asd.get(1)+asd.get(2)+asd.get(3)+asd.get(4));
-        System.out.println(asd.get(5)+asd.get(6)+asd.get(7)+asd.get(8)+asd.get(9));
-        System.out.println(asd.get(10)+asd.get(11)+asd.get(12)+asd.get(13)+asd.get(14));
-        System.out.println(asd.get(15)+asd.get(16)+asd.get(17)+asd.get(18)+asd.get(19));
-        System.out.println(asd.get(20)+asd.get(21)+asd.get(22)+asd.get(23)+asd.get(24));
-        System.out.println("------"+this.newTile.getRotation()+"------");
-        
-        String[][] listaMatriisi = {
-                            {vanhaLista.get(0), vanhaLista.get(1), vanhaLista.get(2),vanhaLista.get(3),vanhaLista.get(4)},
-                            {vanhaLista.get(5),vanhaLista.get(6),vanhaLista.get(7),vanhaLista.get(8),vanhaLista.get(9)},
-                            {vanhaLista.get(10),vanhaLista.get(11),vanhaLista.get(12),vanhaLista.get(13),vanhaLista.get(14)},
-                            {vanhaLista.get(15),vanhaLista.get(16),vanhaLista.get(17),vanhaLista.get(18),vanhaLista.get(19)},
-                            {vanhaLista.get(20),vanhaLista.get(21),vanhaLista.get(22),vanhaLista.get(23),vanhaLista.get(24)}
-                        };
 
-        switch(this.newTile.getRotation())
-        {
-            case 0:
-                return vanhaLista;
-            case 90: 
-                listaMatriisi = rotateMatrixRight(listaMatriisi);
-                uusiLista = convertMatricetoList(listaMatriisi);
-                return uusiLista;
-            case 180:
-                listaMatriisi = rotateMatrixRight(listaMatriisi);
-                listaMatriisi = rotateMatrixRight(listaMatriisi);
-                uusiLista = convertMatricetoList(listaMatriisi);
-                return uusiLista;
-            case 270:
-                listaMatriisi = rotateMatrixRight(listaMatriisi);
-                listaMatriisi = rotateMatrixRight(listaMatriisi);
-                listaMatriisi = rotateMatrixRight(listaMatriisi);
-                uusiLista = convertMatricetoList(listaMatriisi);
-                return uusiLista;
-            default:
-                return vanhaLista;
-                //break;
-        }
-        //return vanhaLista;
+        return palaKay;
     }
     
-    public ArrayList<String> convertMatricetoList(String[][] matrice)
-    {
-        ArrayList<String> converted = new ArrayList<String>();
-        
-        for (String[] rivi : matrice)
-        {
-            for (String alkio : rivi)
-            {
-                converted.add(alkio);
-            }
-        }
-        
-        return converted;
-    }
-    
-    public String[][] rotateMatrixRight(String[][] matrix)
-    {
-        /* W and H are already swapped */
-        int w = matrix.length;
-        int h = matrix[0].length;
-        String[][] ret = new String[h][w];
-        for (int i = 0; i < h; ++i) {
-            for (int j = 0; j < w; ++j) {
-                ret[i][j] = matrix[w - j - 1][i];
-            }
-        }
-        return ret;
-    }
 }

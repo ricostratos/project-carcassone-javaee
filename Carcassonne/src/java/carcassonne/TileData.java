@@ -52,7 +52,7 @@ public class TileData
 
     public void setGrass(ArrayList<int[]> crass)
     {
-        this.grass = grass;
+        this.grass = crass;
     }
 
     public ArrayList<int[]> getCity()
