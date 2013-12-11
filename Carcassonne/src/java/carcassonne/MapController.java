@@ -16,8 +16,6 @@ import javax.servlet.ServletContext;
  *
  * @author Tupi, Ville
  */
-@ManagedBean(name = "MapController")
-@SessionScoped
 public class MapController
 {
     private ArrayList<Tile> allTiles=new ArrayList();
