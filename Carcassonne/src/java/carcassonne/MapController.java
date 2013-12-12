@@ -4,12 +4,15 @@
  */
 package carcassonne;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
@@ -250,7 +253,7 @@ public class MapController
         }
         this.newTile.setRotation(rot);
     }
-    public Boolean compareNeighbours(){
+    public boolean compareNeighbours(){
         boolean palaKay=true;
       char[][] viereisetTyypit;
         

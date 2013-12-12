@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Carcassone dokumentaatio</title>
+        <link href="css/Default.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <div id="outerBody">
+            <div id="banner"><img src="css/images/Banner.png" alt="Carcassonne" onclick="test()" /></div>
+            <a name="gameBoardAnchor"></a>
+            <div id="navigation"><ui:include src="navigation.xhtml"></ui:include></div>
+            <div id="content">
+                <h2>12.12.2012</h2>
+                <h2>Java EE -ohjelmointi</h2>
+                <h1>Projektin dokumentaatio</h1>
+                <p>Castro Tupaq, G9206</p>
+                <p>Hietakangas Ville G2007</p>
+                <p>Ojala Riku F6817</p>
+                <p>Vepsäläinen Aleksi G2456</p>
+                
+                <h2>Tehtävän kuvaus</h2>
+                    <p>Tarkoituksena oli tehdä Carcassone-lautapelistä internetissä 
+                        toimiva versio käyttämällä JavaEEtä.</p>
+
+                    <p>Pelin pistelaskumekaniikan mutkikkuuden takia päätimme jättää sen 
+                    kokonaan työstämme pois ja keskittyä tekemään vain perusominaisuudet,
+                    eli pelilaudan ja siihen laattojen lisäämisen, sekä mahdollisesti myös 
+                    seuraajien lisäämisen.</p>
+                
+                <h2>Käytännön toteutus</h2>
+
+                    <p> Tavoitteena oli toteuttaa selaimessa toimiva versio 
+                    Carcassone -lautapelistä käyttäen Java EE ohjelmistokehitysalustaa. 
+                    Jotta projekti ei olisi liian suuri ja haastava ensimmäiseksi työksi, asetettiin 
+                    päätavoitteiksi lautapelin perusominaisuuksien kehittäminen.
+                    Perusominaisuuksia Carcassonen kannalta on itse pelilauta ja 
+                    pelinappulat. Pelilautaan on mahdollista lisätä pelilaattoja ja yhdistää niitä 
+                    keskenään. Carcassone lautapelissä olevia pelinappuloita kutsutaan 
+                    "seuraajiksi", joita käytetään pisteiden keräämiseen. Carcassonen 
+                    pistelasku on kuitenkin hyvin mutkikas, jonka takia pistelasku 
+                    ominaisuutta ei yritetä luoda tässä projektissa. Vaatimukset projektin 
+                    idean toteuttamiseen kannalta on se, että ohjelma osaa luoda 
+                    pelilaatat joita voidaan asettaa pelilaudalle.</p>
+                
+                    <p>Vaatimukset projektin idean toteuttamiseen kannalta on se, 
+                    että ohjelma osaa luoda pelilaatat joida voidaan asettaa pelilaudalle.                  
+                    Lautapelissä käytetyt pelilaatat tulee myös tunnistaa ja niitä voidaan 
+                    yhdistää vain tietyissä sallituissa rajoissa. Ohjelman pitää osata 
+                    tunnistaa pelilaudalle asetetut pelinappulat. Pelinappula voidaan 
+                    asettaa pelilaatasta riippuen tielle, pellolle tai kaupunkiin. 
+                    Kokonaisuus tulisi näkyä selaimessa niin, että siitä on tunnistettavissa 
+                    pelilaatta ja pelilaatan suunta sekä siihen asetettu pelinappula 
+                    siten, että pelaaja tietää onko pelinappula pellolla, tiellä vai kaupungissa.</p>
+                
+                
+                
+                <h2>Sovelluksen kokonaisrakenne(luokkahierarkia)</h2>
+                    <table border="1">
+                        <tr>
+                            <td>Tile</td>
+                            <td>Laattojen oma luokka. Sisältää laatan IDn(tyyppi), koordinaatit,
+                                sekä laatan asennon (kulman) ja siihen liittyvät funktiot</td>
+                        </tr>
+                        <tr>
+                            <td>TileData</td>
+                            <td>Säilyttää laatan dataa. Kuten kohdat joihinka ukkeli on 
+                            mahdollista laittaa, laatan osasten tyypit(peltoa, tietä jne),
+                            sekä laatan kuvan IDn</td>
+                        </tr>
+                        <tr>
+                            <td>XmlParser</td>
+                            <td>Yksinkertainen luokka joka parsii laattojen tiedot XMLstä</td>
+                        </tr>
+                    </table>
+                    <p>Näiden lisäksi käytetään joitakin Javan omia luokkia kuten Collections,
+                    Random, ArrayList, File, sekä DocumentBuilder</p>
+                
+                <h2>Luokat</h2>
+                
+                    <p>Sovelluksessa on yksinomaan pelilaattoihin liittyviä luokkia.
+                        MapController pitää yllä pelilautaa ja piirtää sitä, Tile-luokka 
+                        on yhden laatan sijaintitiedot sisältävä luokka, TileData taas 
+                        pitää sisällään laatan "visuaaliset" ominaisuudet, esim missä 
+                        on tie tai pelto, jne. Ja lopulta XmlParser lukee .xml tiedostosta 
+                        kaikkien laattojen oletusarvot.</p>
+
+                    <p>Tile-luokkaan lähetetään (ja sieltä vastaanotetaan) laatan tyyppi, 
+                        x- ja y-koordinaatit, rotaatio ja mahdolliset seuraajien sijainnit. 
+                        XmlParser palauttaa kaikki laattojen oletustiedot jotka sitten 
+                        tallennetaan Tile-tyyppiseen ArrayListiin, josta niitä voi 
+                        käyttää uusia paloja tehdessä.</p>
+
+                    <p>TileData lähinnä säilyttää tiedot seuraajien sijainneista, sekä
+                        laatan osasten tyypeistä</p>
+                
+                <h2>Ratkaisuperiaate </h2>
+                    
+                    <p>Toteutettu pääosin jQueryn ja JSF sekoituksella. Interaktiivisuus 
+                        hoidetaan jQueryllä ja tietoa tallennetaan mm. piilotettuihin 
+                        kenttiin, jotka sivun päivityksen yhteydessä lähetetään .java -luokalle. 
+                        Joitain osia myös lähetetään suoraan .java -luokassa olevaan olioon.</p> 
+                    <p>Laatan pyörityksessä ollaan hyväksikäytetty CSS3:n ominaisuuksia, rotate: deg(XX);
+                        Ohjelma vaatii siis toimiakseen Java EE:tä pyörittävän serverin, jQuery importin
+                    </p>
+                
+                <h2>Tietovarastot</h2>
+
+
+                    <p>Sovelluksessa käytettän vain yhtä xml tiedostoa, joka sisältää 
+                    kaikki pelilaattojen tyyppi koordinaatit sekä mihinkä kohtaan 
+                    voi laittaa minkäkin tyyppisen seuraajan. Kun uusi peli 
+                    aloitetaan niin tiedosto luetaan ja serilaisoidaan Tile luokkiin. 
+                    Xml tiedostosta saamme tyyppi coordinaatit muodossa 
+                    "mlllm,-mmm-,ttt--,-----,-----",joka sitten serialisoidaan 
+                    5x5 matriiseihin. Kirjainten selitykset löytyvät oheisesta 
+                    taulukosta.</p>
+
+                    <table>
+                    <tr><th>Kirjain</th><th>Selite</th></tr>
+                    <tr><td>m</td><td>Muuri</td></tr>
+                    <tr><td>l</td><td>Linna</td></tr>
+                    <tr><td>t</td><td>Tie</td></tr>
+                    <tr><td>e</td><td>Risteys</td></tr>
+                    <tr><td>k</td><td>Kirkko</td></tr>
+                    <tr><td>-</td><td>Pelto</td></tr>
+                    </table>
+
+                    <p>
+                    Xml tiedoston Itemit näyttävät tältä:<br></br>
+
+
+                    &lt;Tile id="1"&gt;
+                    &lt;TypeCoordinates&gt;mlllm,-mmm-,ttt--,-----,-----&lt;/TypeCoordinates&gt;
+                    &lt;WorkerPosition&gt;..l..,-....,.t...,.....,...-.&lt;/WorkerPosition&gt;
+                    &lt;/Tile&gt;
+                    </p>
+
+                    <p>
+                    Toinen "tietovarasto" sovelluksessa on kansio, joka sisältää 
+                    kaikki kuvatiedostot kustakin laatasta. Jokaisen laatan kuvatiedosto 
+                    on nimetty kyseisen laatan id:llä, jotta se voidaan helposti 
+                    löytää kun kutakin laattaa käsitetellään ohjelmassa.
+                    </p>
+                
+                <h2>Lähdekoodi</h2>
+                    <p>Löytyy ZIP-pakettina linkin takaa.</p>
+                    <a href="koodi.zip">Lähdekoodi</a>
+                    
+                <h2>Tekijöiden roolit</h2>
+                
+                    <p>Tupaq Castro</p>
+                    <p>Karsi ja siisti runsaasti spagettia, sekä toimi Villen
+                    suurena tukena pelilaudan luonnissa.</p>
+
+                    <p>Ville Hietakangas</p>
+                    <p>Idean isä, joka loi pelilaudan pohjan, tärkeimmät
+                    toiminta periaatteet, sekä käyttöliittymän.</p>
+
+                    <p>Riku Ojala</p>
+                    <p>Päätestaaja, sekä bugien korjaaja. Kirjoitti myös suurimman 
+                    osan loppudokumentaatiosta.</p>
+
+                    <p>Aleksi Vepsäläinen</p>
+                    <p>Rakensi logiikan laattojen sopivuuden tarkastelusta, sekä
+                    niiden pyörittelystä ja pelin etenemisestä.</p>
+            </div>
+        </div>
+    </h:body>
+</html>
+
