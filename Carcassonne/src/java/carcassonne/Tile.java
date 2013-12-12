@@ -6,7 +6,7 @@ package carcassonne;
 
 /**
  *
- * @author Tupi
+ * @author Tupi, Aleksi
  */
 public class Tile implements Comparable<Tile>
 {

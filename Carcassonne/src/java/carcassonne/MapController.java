@@ -5,6 +5,7 @@
 package carcassonne;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 import javax.faces.bean.ManagedBean;
@@ -14,7 +15,7 @@ import javax.servlet.ServletContext;
 
 /**
  *
- * @author Tupi, Ville
+ * @author Tupi, Ville, Aleksi
  */
 @ManagedBean(name = "MapController")
 @SessionScoped
@@ -28,38 +29,28 @@ public class MapController
     private int tileMinX=0,tileMaxX=0,tileMinY=0,tileMaxY=0;
     
     private Tile newTile;
-    private Random rnd = new Random(System.currentTimeMillis());
     private boolean createTile = true;
+    ArrayList<Integer> arl = new ArrayList(Arrays.asList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23));
     
-    public MapController()
-    {
+    public MapController(){
         ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance()
                 .getExternalContext().getContext();
         String realPath = ctx.getRealPath("/data/tileData.xml");
         allTiles = XmlParser.parseXml(realPath);
     }
-    
-    public ArrayList<Tile> getAllTiles()
-    {
+    public ArrayList<Tile> getAllTiles(){
 
         return allTiles;
     }
-
-    public void setAllTiles(ArrayList<Tile> allTiles)
-    {
+    public void setAllTiles(ArrayList<Tile> allTiles){
         this.allTiles = allTiles;
     }
-
-    public ArrayList<Tile> getTilesOnGame()
-    {
+    public ArrayList<Tile> getTilesOnGame(){
         return tilesInGame;
     }
-
-    public void setTilesOnGame(ArrayList<Tile> tilesOnGame)
-    {
+    public void setTilesOnGame(ArrayList<Tile> tilesOnGame){
         this.tilesInGame = tilesOnGame;
     }
-    
     public void prepareGameBoard() {
         if(this.tilesInGame != null && this.tilesInGame.size() > 0) {
             for(int i=0; i<this.tilesInGame.size(); i++) {
@@ -80,7 +71,6 @@ public class MapController
         boardWidth = Math.abs(tileMinX) + tileMaxX + 1;
         boardHeight = Math.abs(tileMinY) + tileMaxY + 1;
     }
-    
     public String printGameBoardTest() {
         int indexCheck=0;
         boolean tileCheck = false, addImage = false;
@@ -137,65 +127,61 @@ public class MapController
         
         return this.printGameBoard;
     }
-    
-    
     /*
     *   AJAX -funktiot
     */
-    
     public void createNewTile() {
-        if (!tilesInGame.isEmpty()) {
+        int newId = getNewRandomInt();
+        System.out.print("Iitee "+newId+" pituus "+tilesInGame.isEmpty());
+        
+        if (!tilesInGame.isEmpty() && newId != 100) {
             if (createTile) {
-            newTile = null;
-
-            int newId = rnd.nextInt(24);
-            newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerMatrix(),this.allTiles.get(newId).getTypeMatrix());
+                newTile = null;
+                System.out.print("Uusi laatta"+newId);
+                newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerMatrix(),this.allTiles.get(newId).getTypeMatrix());
             }
             else {
-                int newId = this.newTile.getId();
+                int newid = this.newTile.getId();
                 newTile = null;
 
-                newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerMatrix(),this.allTiles.get(newId).getTypeMatrix());
+                newTile = new Tile(newid,0,0,this.allTiles.get(newid).getWorkerMatrix(),this.allTiles.get(newid).getTypeMatrix());
             }   
         } 
-        else {
+        else if(newId == 100){
             newTile = null;
-
-            int newId = 10;
+            System.out.print("Peliloppu"+newId);
+        }
+        else{
+            newTile = null;
+            System.out.print("Aloitus"+newId);
+            newId = 10;
             newTile = new Tile(newId,0,0,this.allTiles.get(newId).getWorkerMatrix(),this.allTiles.get(newId).getTypeMatrix());
         }
     }
-    
     public void setNewTileX(int newTileX) {
         this.newTile.setPosX(newTileX);
     }
-
     public void setNewTileY(int newTileY) {
         this.newTile.setPosY(newTileY);
     }
-
     public void setNewTileRotation(int newTileRotation) {
         this.newTile.setRotation(newTileRotation);
     }
-    
     public int getNewTileX() {
         if(newTile != null) {
             return this.newTile.getPosX();
         } else {return 0;}
     }
-
     public int getNewTileY() {
         if(newTile != null) {
             return this.newTile.getPosY();
         } else {return 0;}
     }
-
     public int getNewTileRotation() {
         if(newTile != null) {
             return this.newTile.getRotation();
         } else {return 0;}
     }
-    
     public void addNewTileToGameBoard() {
         
         boolean ok = true;
@@ -236,17 +222,13 @@ public class MapController
                 side="";
             }
     }
-
     public Tile getNewTile() {
         return newTile;
     }
-
     public void setNewTile(Tile newTile) {
         this.newTile = newTile;
     }
-    
-    public void rotateCW()
-    {
+    public void rotateCW(){
         int rot = this.newTile.getRotation();
         rot += 90;
         if(rot >270)
@@ -256,9 +238,7 @@ public class MapController
         //setNewTileRotation(rot);
         this.newTile.setRotation(rot);
     }
-    
-    public void rotateCCW()
-    {
+    public void rotateCCW(){
         int rot = this.newTile.getRotation();
         rot -= 90;
         if(rot < 0)
@@ -267,9 +247,7 @@ public class MapController
         }
         this.newTile.setRotation(rot);
     }
-    
-    public Boolean compareNeighbours()
-    {
+    public Boolean compareNeighbours(){
         boolean palaKay=true;
       char[][] viereisetTyypit;
         
@@ -334,5 +312,20 @@ public class MapController
 
         return palaKay;
     }
-    
+    public int getNewRandomInt(){
+        Random rnd = new Random();
+        long seed = System.nanoTime();
+        Collections.shuffle(arl, new Random(seed));
+        int i = 0;
+        
+        try{
+            i = arl.get(0);
+            arl.remove(0);
+        }
+        catch(Exception e){
+            i = 100;
+        }
+
+        return i;
+    }
 }

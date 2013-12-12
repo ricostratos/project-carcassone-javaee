@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Tupi
+ * @author Tupi, Aleksi
  */
 public class TileData
 {
